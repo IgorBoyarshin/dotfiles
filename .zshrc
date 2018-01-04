@@ -4,20 +4,44 @@
 # Aliases
 
 alias vim='nvim'
+alias svim='sudo -E nvim'
 
+# Git
 alias gits='git status -u'
 alias gitp='git push'
 alias gita='git add -A'
 alias gitc='git commit'
+
+# Copying
+alias cp='rsync -avh'
+alias cppr='rsync -avh --progress'
+
+# Mounting
+# Regular
+alias mnt='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000 /dev/sdb1 /mnt/External'
+alias umnt='sudo umount /dev/sdb1'
+#  && sudo chown igorek /mnt/External
+# Custom
+alias mntc='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000'
+alias umntc='sudo umount'
 
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/igorek/.oh-my-zsh
 
 
+# For MPD
+export MPD_HOST=$HOME/.config/mpd/socket
+
 # For Haskell
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:/home/igorek/.local/bin
+
+
+# Does not work!!?
+# export RANGER_LOAD_DEFAULT_RC=FALSE
+
+export EDITOR='vim'
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"

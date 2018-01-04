@@ -1,0 +1,70 @@
+Config {
+    -- Appearance
+    font = "xft:Source Code Pro for Powerline:size=9:bold:antialias=true",
+    -- font = "xft:DejaVu Sans Mono for Powerline:size=8:bold:antialias=true",
+    -- font = "xft:Consolas for Powerline:size=9:bold:antialias=true",
+    bgColor = "#000000",
+    fgColor = "#ffffff",
+    position = Top,
+    --border = BottomB,
+    --borderColor = "#444444",
+
+    -- Layout
+    sepChar = "%", -- surrounds plugins' names
+    alignSep = "}{", -- separator between left-right alignment
+    template = " %StdinReader% ||| %bright% } <fc=#ff5555>♥♥ Love my Anka ♥♥</fc> { <fc=#F022F0>♫ %volume_pipe%</fc> ||| %battery% ||| <fc=#fff505>%kbd% ✓</fc> ||| %date%  ",
+
+    -- Standart volume template = "%default:Master%"
+
+
+    -- General behaviour
+    lowerOnStart = True, -- send to the bottom of window stack on start
+    hideOnStart = False, -- ???
+    allDesktops = True,
+    overrideRedirect = False, -- ???
+    pickBroadest = False, -- ???
+    persistent = True, -- disable hiding ???
+
+    commands = [
+        Run Date "<fc=#7777ff>%a</fc> %d.%m.%Y | <fc=#7777ff>%H:%M:%S</fc>" "date" 10,
+
+        -- Run Volume "default" "Master" [
+            -- "--template" , "<fc=#cc44dd>♫ <volume>%</fc> <status>"
+        -- ] 10,
+
+        Run PipeReader "/tmp/.volume-pipe" "volume_pipe",
+
+        Run Kbd [("us", "EN"), ("ru", "RU"), ("ua", "UA")],
+
+        Run Brightness [
+            "-t", "☼: <percent>%",
+            "--",
+            "-D", "intel_backlight"
+        ] 60,
+
+        Run Battery [
+            -- "--template" , "<leftbar> |<leftvbar>| <acstatus>"
+
+            "--template" , "<fc=#44fcdd>Batt: <acstatus></fc>"
+            , "--Low"      , "30"        -- units: %
+            , "--High"     , "80"        -- units: %
+            , "--low"      , "#aa0000"
+            , "--normal"   , "#00cc22"
+            , "--high"     , "#00ee22"
+
+            -- battery specific options
+            , "--"
+            -- discharging status
+            , "-o", "(<timeleft> left) <left>% <fc=#ff2222>[-]</fc>"
+            -- AC "on" status
+            , "-O", "<left>% <fc=#12ff12>[+]</fc>"
+            -- charged status
+            , "-i", "<fc=#006000>Charged</fc>"
+        ]
+        50, -- in 1/10 seconds
+
+        Run StdinReader
+    ]
+
+}
+

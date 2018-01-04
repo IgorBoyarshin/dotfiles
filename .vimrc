@@ -1,6 +1,8 @@
 " This is the configuration file for Vim(NeoVim)
 
 
+" set rtp+=~/.local/share/nvim/site/autoload/plug.vim
+
 " ----------------------------------------------------------
 " --------------------- Vim-Plug begin ---------------------
 
@@ -17,12 +19,14 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'tomtom/tcomment_vim' " comments with Ctrl+//
 " Plug 'neomake/neomake' "async linting
 " async code completion:
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'java' }
+" TODO: reenable
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'java' }
 " Plug 'rustushki/JavaImp.vim'
 Plug 'Yggdroot/indentLine'          " indentation with vertical markers
 Plug 'Raimondi/delimitMate'         " auto-close brackets, quotes...
 " Plug 'ctrlpvim/ctrlp.vim'           " fuzzy search
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+" TODO: reenable
+" Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'easymotion/vim-easymotion'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'cpp' }
@@ -57,20 +61,23 @@ call plug#end()
 
 
 " Haskell plugins
-"
+
+" For ghc-mod:
+let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+
 " ALE
 let g:ale_linters = {
 \    'haskell': ['stack-ghc-mod', 'hlint']
 \}
 " \    'haskell': ['ghc-mod', 'hlint']
 
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '×'
+let g:ale_sign_warning = 'W'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
-let g:ale_list_window_size = 8
+let g:ale_list_window_size = 6
 
 " Disable ALE for this pattern:
 let g:ale_pattern_options = {
@@ -257,6 +264,10 @@ vmap > >gv
 nmap gO O<ESC>j
 nmap g<C-O> o<ESC>k
 
+
+" Spell checking
+map <F6> :setlocal spell! spelllang=en_us<CR>
+
 set number      " display line numbers
 set encoding=utf-8
 
@@ -268,7 +279,7 @@ set noswapfile
 set sessionoptions-=options
 set display+=lastline
 
-" Make the 80th column visible 
+" Make the 80th column visible
 if exists('+colorcolumn')
   set colorcolumn=80
 else
@@ -300,7 +311,11 @@ set timeoutlen=1000 ttimeoutlen=0
 " Abbreviations
 abbr cosnt const
 abbr reutrn return
+abbr retunr return
 abbr incldue include
+abbr unsinged unsigned
+abbr whiel while
+abbr inclued include
 
 
 function! ClipboardYank()
