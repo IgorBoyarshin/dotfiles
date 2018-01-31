@@ -207,6 +207,11 @@ nnoremap <C-/> gcc
 " Navigate through them while still in search mode with Ctrl-G and Ctrl-T.
 set incsearch
 
+" Make the search case insensitive, but switch to sensitive when there is a
+" capital letter in the search pattern.
+set ignorecase
+set smartcase
+
 " TAB size is 4 spaces. Always replace TAB with spaces.
 set tabstop=4
 set softtabstop=0   " 0 == when backspacing, delete by spaces, not by tabs
@@ -242,8 +247,8 @@ endif
 
 no <up> ddkP
 no <down> ddp
-no <right> <Nop>
-no <left> <Nop>
+no <right> xp
+no <left> xhP
 
 ino <down> <Nop>
 ino <right> <Nop>
@@ -316,6 +321,7 @@ abbr incldue include
 abbr unsinged unsigned
 abbr whiel while
 abbr inclued include
+abbr stirng string
 
 
 function! ClipboardYank()
@@ -339,6 +345,17 @@ filetype plugin indent on
 autocmd FileType java imap sout<Tab> System.out.println();<Esc>F(a
 " autocmd FileType java imap sout<Tab> System.out.println("");<Esc>F"i
 " abbr sout System.out.println(
+
+
+" Relative line numbers.
+" Switches back to absolute once the focus is lost or upon entering the Insert
+" mode
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 
 " --------------------- Vim(Neovim) settings end -----------

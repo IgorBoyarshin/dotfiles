@@ -1,8 +1,7 @@
 Config {
     -- Appearance
-    font = "xft:Source Code Pro for Powerline:size=9:bold:antialias=true",
-    -- font = "xft:DejaVu Sans Mono for Powerline:size=8:bold:antialias=true",
-    -- font = "xft:Consolas for Powerline:size=9:bold:antialias=true",
+    -- font = "xft:mononoki Nerd Font:size=9:bold:antialias=true",
+    font = "xft:SourceCodePro Nerd Font:size=9:bold:antialias=true",
     bgColor = "#000000",
     fgColor = "#ffffff",
     position = Top,
@@ -12,7 +11,7 @@ Config {
     -- Layout
     sepChar = "%", -- surrounds plugins' names
     alignSep = "}{", -- separator between left-right alignment
-    template = " %StdinReader% ||| %bright% } <fc=#ff5555>♥♥ Love my Anka ♥♥</fc> { <fc=#F022F0>♫ %volume_pipe%</fc> ||| %battery% ||| <fc=#fff505>%kbd% ✓</fc> ||| %date%  ",
+    template = " %StdinReader%  %bright% } <fc=#ff5555>♥♥ Love my Anka ♥♥</fc> { <fc=#F022F0>♫ %volume_pipe%</fc>  %battery%  <fc=#fff505>%kbd% ✓</fc> ||| %date%  ",
 
     -- Standart volume template = "%default:Master%"
 
@@ -45,7 +44,7 @@ Config {
         Run Battery [
             -- "--template" , "<leftbar> |<leftvbar>| <acstatus>"
 
-            "--template" , "<fc=#44fcdd>Batt: <acstatus></fc>"
+            "--template" , "<fc=#44fcdd>⏻ <acstatus></fc>"
             , "--Low"      , "30"        -- units: %
             , "--High"     , "80"        -- units: %
             , "--low"      , "#aa0000"

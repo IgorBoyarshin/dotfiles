@@ -26,6 +26,15 @@ alias mntc='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000'
 alias umntc='sudo umount'
 
 
+# Usual
+alias info='vim ~/Stuff/notes/info.txt'
+alias inst='vim ~/Stuff/notes/install.txt'
+alias notes='cd ~/Stuff/notes'
+alias lsr='ls -alrth'
+alias vimrc='vim ~/dotfiles/.vimrc'
+alias zshrc='vim ~/dotfiles/.zshrc'
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/igorek/.oh-my-zsh
 
@@ -36,6 +45,9 @@ export MPD_HOST=$HOME/.config/mpd/socket
 # For Haskell
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:/home/igorek/.local/bin
+
+# For ranger. Not to load the default config file
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 
 # Does not work!!?
@@ -73,7 +85,7 @@ KEYTIMEOUT=1
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -104,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
