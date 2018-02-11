@@ -33,6 +33,11 @@ alias notes='cd ~/Stuff/notes'
 alias lsr='ls -alrth'
 alias vimrc='vim ~/dotfiles/.vimrc'
 alias zshrc='vim ~/dotfiles/.zshrc'
+alias c='clear'
+# Reload shell config on the fly
+alias src='source ~/.zshrc'
+
+alias cpcpp='cp ~/Stuff/notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/notes/coding/Makefile.example Makefile'
 
 
 # Path to your oh-my-zsh installation.

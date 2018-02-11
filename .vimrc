@@ -1,7 +1,7 @@
 " This is the configuration file for Vim(NeoVim)
 
 
-" set rtp+=~/.local/share/nvim/site/autoload/plug.vim
+set rtp+=~/.local/share/nvim/site/autoload/plug.vim
 
 " ----------------------------------------------------------
 " --------------------- Vim-Plug begin ---------------------
@@ -37,6 +37,9 @@ Plug 'tomtom/tlib_vim'
 
 Plug 'tpope/vim-surround'
 
+" Russian mode support
+Plug 'vim-scripts/ruscmd'
+
 " Python
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'nvie/vim-flake8', {'for': 'python'}
@@ -50,7 +53,7 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'eagletmt/ghcmod-vim'
 "
 "
-" Code beautifier(Java, C++, ..) https://github.com/uncrustify/uncrustify
+" Code beautifier(Java, C++, ..): https://github.com/uncrustify/uncrustify
 
 call plug#end()
 
@@ -191,6 +194,17 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tmuxline#enabled = 0
 set noshowmode
 
+
+" For the Solarized colorscheme
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+"let g:solarized_termtrans=1 " for transparent background
+colorscheme solarized
+
+let g:tmuxline_preset = 'tmux'
+
+
 " Comments
 vnoremap <C-/> gc
 nnoremap <C-/> gcc
@@ -255,6 +269,12 @@ ino <right> <Nop>
 ino <up> <Nop>
 ino <left> <Nop>
 
+
+" Russian language support
+" nmap ц w
+" nmap и b
+
+
 " Faster and more convenient navigation
 noremap H ^
 noremap L $
@@ -300,15 +320,6 @@ endif
 " set clipboard=unnamed ",unnamedplus
 " set clipboard^=unnamed,unnamedplus
 set clipboard=unnamedplus
-
-" For the Solarized colorscheme
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-"let g:solarized_termtrans=1 " for transparent background
-colorscheme solarized
-
-let g:tmuxline_preset = 'tmux'
 
 " To fix the delay when exiting Insert mode
 set timeoutlen=1000 ttimeoutlen=0
