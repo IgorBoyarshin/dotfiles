@@ -218,6 +218,11 @@ filetype plugin indent on
 autocmd FileType java imap sout<Tab> System.out.println();<Esc>F(a
 " autocmd FileType java imap sout<Tab> System.out.println("");<Esc>F"i
 
+
+" Compilation for R Markdown
+autocmd FileType rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+
+
 "
 " map <C-\> :NERDTreeToggle<CR>
 
@@ -278,11 +283,6 @@ ino <down> <Nop>
 ino <right> <Nop>
 ino <up> <Nop>
 ino <left> <Nop>
-
-
-" Russian language support
-" nmap ц w
-" nmap и b
 
 
 " Faster and more convenient navigation
@@ -361,12 +361,12 @@ nnoremap <silent> p :call ClipboardPaste()<cr>p
 " Relative line numbers.
 " Switches back to absolute once the focus is lost or upon entering the Insert
 " mode
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" set number relativenumber
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
 
 
 " --------------------- Vim(Neovim) settings end -----------

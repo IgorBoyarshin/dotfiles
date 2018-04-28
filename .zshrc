@@ -25,14 +25,33 @@ alias umnt='sudo umount /dev/sdb1'
 alias mntc='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000'
 alias umntc='sudo umount'
 
+# Places
+alias notes='cd ~/Stuff/notes'
+alias ger='cd ~/Storage/Studying/German'
+alias ger1='djvu ~/Storage/Studying/German/GER_Kamyanova_Praktichesky_kurs_nemetskogo_yazyka.djvu'
+alias ger2='djvu ~/Storage/Studying/German/GER_20-\ Практический\ курс\ немецкого\ языка_Завьялова\ Ильина_2005\ 6-е\ изд\ \(with\ Audio\).djvu'
+# Semester 6
+alias sem6='cd ~/Storage/Studying/Semester\ 6'
+alias ppcs='cd ~/Storage/Studying/Semester\ 6/Programming\ for\ Parallel\ Computer\ Systems/Labs'
+alias ca='cd ~/Storage/Studying/Semester\ 6/Computer\ Architecture'
+
+
+# Programs
+alias evernote='nixnote2'
+alias djvu='djview'
+alias pdf='evince'
+alias img='mirage'
+alias word='libreoffice --writer'
+alias excel='libreoffice --calc'
+alias draw='libreoffice --draw'
+
 
 # Usual
 alias info='vim ~/Stuff/notes/info.txt'
 alias inst='vim ~/Stuff/notes/install.txt'
-alias notes='cd ~/Stuff/notes'
-alias lsr='ls -alrth'
 alias vimrc='vim ~/dotfiles/.vimrc'
 alias zshrc='vim ~/dotfiles/.zshrc'
+alias lsr='ls -alrth'
 alias c='clear'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
@@ -54,6 +73,8 @@ export PATH=$PATH:/home/igorek/.local/bin
 # For ranger. Not to load the default config file
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+# Possible fix for fontconfig issue
+export FONTCONFIG_PATH=/etc/fonts
 
 # Does not work!!?
 # export RANGER_LOAD_DEFAULT_RC=FALSE
