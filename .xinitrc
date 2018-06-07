@@ -32,21 +32,22 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# twm &
-# xclock -geometry 50x50-1+1 &
-# exec xterm -geometry 80x66+0+0 -name login
 
-feh --bg-center ~/Stuff/wallpaper.png
-xset r rate 250 40
+feh --bg-scale ~/Stuff/wallpaper6.jpg &
+# xset r rate 250 40
 
 # Prepare the pipe for the volume control for xmobar and execute the script
-# once in order to give initial value to the xmobar through the pipe.
+# once in order to give initial value for xmobar through the pipe.
 _volume_pipe=/tmp/.volume-pipe
 [[ -S $_volume_pipe ]] || mkfifo $_volume_pipe
 ~/.set-volume.zsh &
 
+# Make sure the .Xresources is read
+# (already read at the top)
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # MPD
-[ ! -s ~/.config/mpd/pid ] && mpd
+mpd &
+# [ ! -s ~/.config/mpd/pid ] && mpd
 
-exec xmonad > $HOME/.xmonad/log.txt 2>&1
+exec $HOME/.local/bin/xmonad > $HOME/.xmonad/log.txt 2>&1

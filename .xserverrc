@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+
+# The second argument (-arinterval <...>) uses delay, whereas xset uses frequency.
+# So, for example, xset r rate 250 40 === ... -ardelay 250 -arinterval 25
+# (because 1/25ms = 40Hz).
+exec /usr/bin/Xorg -nolisten tcp -ardelay 250 -arinterval 20 "$@" vt$XDG_VTNR

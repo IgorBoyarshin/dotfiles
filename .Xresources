@@ -2,13 +2,19 @@
 URxvt.scrollStyle: rxvt
 URxvt.scrollBar: false
 
-! URxvt.font: xft:Consolas for Powerline:size=9:antialias=true,\
+! URxvt.font: xft:FiraCode Nerd Font Mono:size=9:antialias=true:style=Medium:hinting=true,\
 !             xft:FreeSerif:style=Regular
 
-URxvt.font: xft:Source Code Pro for Powerline:size=9:antialias=true,\
+! URxvt.font: xft:mononoki Nerd Font Mono:size=10:antialias=true,\
+!             xft:FreeSerif:style=Regular
+
+URxvt.font: xft:SourceCodePro Nerd Font Mono:size=9:antialias=true:style=Medium:hinting=true,\
             xft:FreeSerif:style=Regular
 
-! URxvt.font: xft:DejaVu Sans Mono for Powerline:size=8:antialias=true,\
+! URxvt.font: xft:DejaVuSansMono Nerd Font:size=9:antialias=true,hinting=true,\
+!             xft:FreeSerif:style=Regular
+
+! URxvt.font: xft:InconsolataGo Nerd Font Mono:size=11:antialias=true:style=Bold:hinting=true,\
 !             xft:FreeSerif:style=Regular
 
 URxvt.letterSpace: -1
@@ -34,5 +40,5 @@ URxvt.iso14755_52: false
 
 
 ! ??????
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+! URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+! URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

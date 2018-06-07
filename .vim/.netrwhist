@@ -1,2 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/igorek/.tmux'
+let g:netrw_dirhist_2='/home/igorek/.tmux/plugins'
+let g:netrw_dirhist_3='/home/igorek/.tmux'
+let g:netrw_dirhist_4='/home/igorek/.tmux/plugins'
+let g:netrw_dirhist_5='/home/igorek/.vim'
+let g:netrw_dirhist_6='/home/igorek/.vim/autoload'
+let g:netrw_dirhist_7='/home/igorek/.vim'
+let g:netrw_dirhist_8='/home/igorek/.vim/snippets'
+let g:netrw_dirhist_9='/home/igorek/.vim'
