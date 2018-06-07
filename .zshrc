@@ -27,13 +27,13 @@ alias umntc='sudo umount'
 
 # Places
 alias notes='cd ~/Stuff/notes'
-alias ger='cd ~/Storage/Studying/German'
+alias audio='cd ~/Storage/Audio/Main'
+# alias ger='cd ~/Storage/Studying/German'
 alias ger1='djvu ~/Storage/Studying/German/GER_Kamyanova_Praktichesky_kurs_nemetskogo_yazyka.djvu'
 alias ger2='djvu ~/Storage/Studying/German/GER_20-\ Практический\ курс\ немецкого\ языка_Завьялова\ Ильина_2005\ 6-е\ изд\ \(with\ Audio\).djvu'
 # Semester 6
 alias sem6='cd ~/Storage/Studying/Semester\ 6'
 alias ppcs='cd ~/Storage/Studying/Semester\ 6/Programming\ for\ Parallel\ Computer\ Systems/Labs'
-alias ca='cd ~/Storage/Studying/Semester\ 6/Computer\ Architecture'
 
 
 # Programs
@@ -44,9 +44,14 @@ alias img='mirage'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
+alias rr='ranger'
 
 
 # Usual
+alias updp='sudo pacman -Syu'
+alias updt='trizen -Syu --noconfirm'
+alias rmvp='sudo pacman -Rns'
+alias rmvt='trizen -Rns'
 alias info='vim ~/Stuff/notes/info.txt'
 alias inst='vim ~/Stuff/notes/install.txt'
 alias vimrc='vim ~/dotfiles/.vimrc'
@@ -67,7 +72,7 @@ export ZSH=/home/igorek/.oh-my-zsh
 export MPD_HOST=$HOME/.config/mpd/socket
 
 # For Haskell
-export PATH=$PATH:~/.cabal/bin
+#export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:/home/igorek/.local/bin
 
 # For ranger. Not to load the default config file
