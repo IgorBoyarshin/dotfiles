@@ -1,6 +1,10 @@
 #!/usr/bin/zsh
 
+# The line numbering should be synced with distribute.zsh to keep things easily maintainable
 # .zshrc .vimrc .tmux.conf are sourced from this dir, don't copy them!!
+
+
+
 
 rsync -ah ~/.dircolors ./
 rsync -ah ~/.screenshot-capture.zsh ./
@@ -39,3 +43,15 @@ rsync -ah ~/.config/nvim/init.vim .config/nvim/
 
 mkdir -p .config/mpd
 rsync -ah ~/.config/mpd/mpd.conf .config/mpd/
+
+mkdir -p .config/mpv
+rsync -ah ~/.config/mpv/input.conf .config/mpv/
+rsync -ah ~/.config/mpv/mpv.conf .config/mpv/
+mkdir -p .config/mpv/lua-settings
+rsync -ah ~/.config/mpv/lua-settings/osc.conf .config/mpv/lua-settings/
+
+mkdir -p .newsboat
+rsync -ah ~/.newsboat/config .newsboat/config
+rsync -ah ~/.newsboat/urls .newsboat/urls
+
+rsync -ah ~/.fehbg .fehbg

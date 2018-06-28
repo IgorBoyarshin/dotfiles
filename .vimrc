@@ -45,8 +45,11 @@ Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'nvie/vim-flake8', {'for': 'python'}
 
 
+Plug 'https://github.com/vim-syntastic/syntastic'
+
+
 " Haskell
-Plug 'w0rp/ale' " async linting
+" Plug 'w0rp/ale' " async linting
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " required for ghcmod-vim
 Plug 'neovimhaskell/haskell-vim'
 " Plug 'dag/vim2hs'
@@ -56,42 +59,53 @@ Plug 'eagletmt/ghcmod-vim'
 " Code beautifier(Java, C++, ..): https://github.com/uncrustify/uncrustify
 
 call plug#end()
-
-
 " --------------------- Vim-Plug end -----------------------
 " ----------------------------------------------------------
 " --------------------- Plugins settings begin -------------
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "W"
+let g:syntastic_loc_list_height = 5
+
+let g:syntastic_cpp_compiler_options = ' -std=c++17'
 
 " Haskell plugins
 
 " For ghc-mod:
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
-" ALE
-let g:ale_linters = {
-\    'haskell': ['stack-ghc-mod', 'hlint']
-\}
-" \    'haskell': ['ghc-mod', 'hlint']
-
-let g:ale_sign_error = '×'
-let g:ale_sign_warning = 'W'
-let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
-let g:ale_list_window_size = 6
-
-" Disable ALE for this pattern:
-let g:ale_pattern_options = {
-\   'notes.*': {'ale_enabled': 0},
-\}
+" " ALE
+" let g:ale_linters = {
+" \    'haskell': ['stack-ghc-mod', 'hlint']
+" \}
+" " \    'haskell': ['ghc-mod', 'hlint']
+"
+" let g:ale_sign_error = '×'
+" let g:ale_sign_warning = 'W'
+" let g:airline#extensions#ale#enabled = 1
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_set_quickfix = 1
+" let g:ale_open_list = 1
+" let g:ale_list_window_size = 6
+"
+" " Disable ALE for this pattern:
+" let g:ale_pattern_options = {
+" \   'notes.*': {'ale_enabled': 0},
+" \}
 
 " Jump between errors(warnings)
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
-map <C-k> :cp<CR>
-map <C-j> :cn<CR>
+noremap <C-k> :cp<CR>
+noremap <C-j> :cn<CR>
 
 " function! LinterStatus() abort
 "     let l:counts = ale#statusline#Count(bufnr(''))
@@ -122,8 +136,8 @@ let g:haskell_indent_case_alternative = 1 " Allow a second case indent style (se
 let g:haskell_indent_let_no_in = 0        " Only next under 'let' if there's an equals sign
 
 " ghc-mod
-map <silent> tw :<C-U>GhcModTypeInsert<CR>
-map <silent> tq :<C-U>GhcModType<CR>
+noremap <silent> tw :<C-U>GhcModTypeInsert<CR>
+noremap <silent> tq :<C-U>GhcModType<CR>
 
 
 
@@ -175,14 +189,14 @@ let g:pymode_lint = 0
 let g:JavaComplete_EnableDefaultMappings = 0
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " TODO: make java-only
-nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-nmap <F5> <Plug>(JavaComplete-Imports-Add)
-imap <F5> <Plug>(JavaComplete-Imports-Add)
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+nnoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+inoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+nnoremap <F5> <Plug>(JavaComplete-Imports-Add)
+inoremap <F5> <Plug>(JavaComplete-Imports-Add)
+nnoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+inoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+nnoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+inoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
 
 " For airline
@@ -215,21 +229,23 @@ filetype plugin indent on
 
 
 " For Java
-autocmd FileType java imap sout<Tab> System.out.println();<Esc>F(a
-" autocmd FileType java imap sout<Tab> System.out.println("");<Esc>F"i
+autocmd FileType java inoremap sout<Tab> System.out.println();<Esc>F(a
+" autocmd FileType java inoremap sout<Tab> System.out.println("");<Esc>F"i
 
 
 " Compilation for R Markdown
-autocmd FileType rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+autocmd FileType rmd noremap <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 
 "
 " map <C-\> :NERDTreeToggle<CR>
 
 
-" --------------------- Plugins settings end ---------------
-" ----------------------------------------------------------
-" --------------------- Vim(Neovim) settings begin ---------
+" ---------------------------- Plugins settings end ---------------------------
+" -----------------------------------------------------------------------------
+" ------------------------- Vim(Neovim) settings begin ------------------------
+" Use Space Bar to put a space
+nnoremap <Space> i<Space><Esc>
 
 
 " Highlights the current search match.
@@ -291,17 +307,21 @@ noremap L $
 noremap J 5j
 noremap K 5k
 
+" Paste with new line
+nmap gP O<C-r>*<ESC>
+nmap gp o<C-r>*<ESC>
+
 " Visual block shift
-vmap < <gv
-vmap > >gv
+vnoremap < <gv
+vnoremap > >gv
 
 " Put line before or after the current line without entering the insert mode
-nmap gO O<ESC>j
-nmap g<C-O> o<ESC>k
+nnoremap gO O<ESC>j
+nnoremap g<C-O> o<ESC>k
 
 
 " Spell checking
-map <F6> :setlocal spell! spelllang=en_us<CR>
+noremap <F6> :setlocal spell! spelllang=en_us<CR>
 
 set number      " display line numbers
 set encoding=utf-8
@@ -358,6 +378,10 @@ vnoremap <silent> d d:call ClipboardYank()<cr>
 nnoremap <silent> p :call ClipboardPaste()<cr>p
 
 
+" Otherwise the cursor stops blinking putside of vim
+au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+
+
 " Relative line numbers.
 " Switches back to absolute once the focus is lost or upon entering the Insert
 " mode
@@ -369,15 +393,15 @@ nnoremap <silent> p :call ClipboardPaste()<cr>p
 " augroup END
 
 
-" --------------------- Vim(Neovim) settings end -----------
-" ----------------------------------------------------------
+" ----------------------------- Vim(Neovim) settings end ----------------------
+" -----------------------------------------------------------------------------
 
 
 finish
 
 
-" ----------------------------------------------------------
-" --------------------- Unknown setings start --------------
+" -----------------------------------------------------------------------------
+" ----------------------------- Unknown setings start -------------------------
 
 
 if exists('g:loaded_sensible') || &compatible
@@ -441,5 +465,5 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 
-" --------------------- Unknown setings end ----------------
-" ----------------------------------------------------------
+" ---------------------------- Unknown setings end ----------------------------
+" -----------------------------------------------------------------------------

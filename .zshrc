@@ -1,11 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Aliases
-
-alias vim='nvim'
-alias svim='sudo -E nvim'
-
 # Git
 alias gits='git status -u'
 alias gitp='git push'
@@ -28,26 +20,28 @@ alias umntc='sudo umount'
 # Places
 alias notes='cd ~/Stuff/notes'
 alias audio='cd ~/Storage/Audio/Main'
-# alias ger='cd ~/Storage/Studying/German'
 alias ger1='djvu ~/Storage/Studying/German/GER_Kamyanova_Praktichesky_kurs_nemetskogo_yazyka.djvu'
 alias ger2='djvu ~/Storage/Studying/German/GER_20-\ Практический\ курс\ немецкого\ языка_Завьялова\ Ильина_2005\ 6-е\ изд\ \(with\ Audio\).djvu'
-# Semester 6
 alias sem6='cd ~/Storage/Studying/Semester\ 6'
-alias ppcs='cd ~/Storage/Studying/Semester\ 6/Programming\ for\ Parallel\ Computer\ Systems/Labs'
-
+# alias ppcs='cd ~/Storage/Studying/Semester\ 6/Programming\ for\ Parallel\ Computer\ Systems/Labs'
 
 # Programs
+alias vim='nvim'
+alias svim='sudo -E nvim'
 alias evernote='nixnote2'
 alias djvu='djview'
 alias pdf='evince'
-alias img='mirage'
+alias img='nomacs'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
 alias rr='ranger'
 
-
 # Usual
+alias instp='sudo pacman -S'
+alias instt='trizen -S --noconfirm'
+alias rmp='sudo pacman -Rns'
+alias rmt='trizen -Rns'
 alias updp='sudo pacman -Syu'
 alias updt='trizen -Syu --noconfirm'
 alias rmvp='sudo pacman -Rns'
@@ -81,14 +75,55 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 # Possible fix for fontconfig issue
 export FONTCONFIG_PATH=/etc/fonts
 
-# Does not work!!?
-# export RANGER_LOAD_DEFAULT_RC=FALSE
-
 export EDITOR='vim'
+# export TERMINAL='vim'
+
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+# Powerlevel9k settings (must go before the theme setting)
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_SHORTEN_DELIMITER=".."
+POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"
+# POWERLEVEL9K_USER_ICON=''
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='cyan'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='cyan'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+# POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="agnoster"
 # ZSH_THEME="igorek-theme"
+
+
+# Zsh-autosuggestions settings
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+bindkey '^ ' forward-word
+
+
+
+# Colored man pages
+export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode
+export LESS_TERMCAP_md=$(printf '\e[01;38;5;75m') # enter double-bright mode
+export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
+export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode
+export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;38;5;200m') # enter underline mode
+
 
 # How long to wait for additional chars in sequence
 KEYTIMEOUT=1
@@ -136,7 +171,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
+    git zsh-syntax-highlighting zsh-autosuggestions
 )
 
 

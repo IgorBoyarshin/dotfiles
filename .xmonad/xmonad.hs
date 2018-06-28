@@ -28,7 +28,7 @@ main = do
                 setWMName "LG3D",
                 setDefaultCursor xC_left_ptr
             ],
-            borderWidth = 3,
+            borderWidth = 2,
 
             layoutHook = smartBorders . avoidStruts $ layoutHook desktopConfig, -- smartBorders to avoid borders while in fullscreen
             handleEventHook = composeAll[

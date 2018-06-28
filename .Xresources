@@ -8,8 +8,8 @@ URxvt.scrollBar: false
 ! URxvt.font: xft:mononoki Nerd Font Mono:size=10:antialias=true,\
 !             xft:FreeSerif:style=Regular
 
-URxvt.font: xft:SourceCodePro Nerd Font Mono:size=9:antialias=true:style=Medium:hinting=true,\
-            xft:FreeSerif:style=Regular
+URxvt.font: xft:SourceCodePro Nerd Font Mono:size=9:antialias=true:style=Meduim:minspace=False:hinting=true,\
+           xft:FreeSerif:style=Regular
 
 ! URxvt.font: xft:DejaVuSansMono Nerd Font:size=9:antialias=true,hinting=true,\
 !             xft:FreeSerif:style=Regular
@@ -20,15 +20,23 @@ URxvt.font: xft:SourceCodePro Nerd Font Mono:size=9:antialias=true:style=Medium:
 URxvt.letterSpace: -1
 URxvt.perl-ext-common: selection-to-clipboard,resize-font
 
+URxvt.internalBorder: 0
+
 ! Cursor
 URxvt.cursorBlink: true
 URxvt.cursorColor: #bbbbbb
-!URxvt.cursorUnderline: true
+! URxvt.cursorUnderline: true
 ! URxvt*fadeColor: #002b36
 
 URxvt*background: #111111
 URxvt*foreground: #55fb00
 
+! Something to do with correct solarized colors display
+URxvt.intensityStyles: false
+
+! Transparency (fake)
+urxvt*transparent: true
+urxvt*shading: 20
 
 ! Redefine some keybindings for resize-font
 URxvt.keysym.C-plus: resize-font:reset

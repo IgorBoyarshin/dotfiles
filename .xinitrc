@@ -33,7 +33,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 
-feh --bg-scale ~/Stuff/wallpaper6.jpg &
+~/.fehbg &
+# feh --bg-scale ~/Stuff/wallpaper6.jpg &
 # xset r rate 250 40
 
 # Prepare the pipe for the volume control for xmobar and execute the script

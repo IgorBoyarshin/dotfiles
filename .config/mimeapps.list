@@ -8,8 +8,8 @@ x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/tg=telegramdesktop.desktop
 
 application/pdf=evince.desktop
-image/jpeg=mirage.desktop
-image/png=mirage.desktop
+image/jpeg=nomacs.desktop
+image/png=nomacs.desktop
 application/msword=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
 application/vnd.ms-excel=libreoffice-calc.desktop
