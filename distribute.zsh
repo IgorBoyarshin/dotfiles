@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
 # The line numbering should be synced with collect.zsh to keep things easily maintainable
+# Also need to edit the crontab manually with crontab.txt
 
 rsync -ah .tmux.conf.orig ~/.tmux.conf
 rsync -ah .zshrc.orig ~/.zshrc

@@ -2,6 +2,7 @@
 
 # The line numbering should be synced with distribute.zsh to keep things easily maintainable
 # .zshrc .vimrc .tmux.conf are sourced from this dir, don't copy them!!
+# Also need to edit the crontab manually with crontab.txt
 
 
 
