@@ -1,3 +1,3 @@
 #!/usr/bin/zsh
 
-scrot -q 85 -s ~/screenshots/screenshot-%d-%m-%Y--%T.png
+scrot -q 85 -s ~/screenshots/screenshot-%Y-%m-%d--%T.png
