@@ -33,11 +33,12 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         src=${BASH_REMATCH[2]}
         package=${BASH_REMATCH[3]}
 
-        # if [[ $priority = "#" ]]; then
-        #     if [[ $src = "pac" ]]; then
-        #         echo $package
-        #     fi
-        # fi
+        if [[ $priority = "#" ]]; then
+            if [[ $src = "pac" ]]; then
+                echo ":> sudo pacman -S $package"
+                sudo pacman -S $package
+            fi
+        fi
     fi
 
     # echo ":>${line}"
