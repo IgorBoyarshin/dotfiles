@@ -36,7 +36,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         if [[ $priority = "#" ]]; then
             if [[ $src = "pac" ]]; then
                 echo ":> sudo pacman -S $package"
-                sudo pacman -S $package
+                sudo pacman -S --noconfirm $package
             fi
         fi
     fi

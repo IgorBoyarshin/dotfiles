@@ -7,6 +7,8 @@ alias gitc='git commit'
 # Copying
 alias cp='rsync -avh'
 alias cppr='rsync -avh --progress'
+alias scp='sudo rsync -avh'
+alias scppr='sudo rsync -avh --progress'
 
 # Mounting
 # Regular
@@ -57,6 +59,9 @@ alias src='source ~/.zshrc'
 
 alias cpcpp='cp ~/Stuff/notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/notes/coding/Makefile.example Makefile'
 
+export TERM="rxvt-256color"
+
+export XDG_CONFIG_HOME="~/.config"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/igorek/.oh-my-zsh
