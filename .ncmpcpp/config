@@ -1,6 +1,6 @@
 ##
 # Files
- mpd_music_dir = "~/Storage/Audio/Main"  
+ mpd_music_dir = "~/Mutual/Audio/ALL/Main"  
  # lyrics_directory  = ~/.ncmpcpp/lyrics
  ncmpcpp_directory  = ~/.ncmpcpp
  mpd_host = "localhost"

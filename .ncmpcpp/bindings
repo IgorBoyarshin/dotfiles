@@ -545,7 +545,19 @@
 
 def_key "j"
     scroll_down
+def_key "J"
+    scroll_down
+    scroll_down
+    scroll_down
+    scroll_down
+    scroll_down
 def_key "k"
+    scroll_up
+def_key "K"
+    scroll_up
+    scroll_up
+    scroll_up
+    scroll_up
     scroll_up
 def_key "h"
     previous_column

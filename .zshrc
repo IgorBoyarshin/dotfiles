@@ -54,6 +54,7 @@ alias vimrc='vim ~/dotfiles/.vimrc'
 alias zshrc='vim ~/dotfiles/.zshrc'
 alias lsr='ls -alrth'
 alias c='clear'
+alias mkwifi='sudo create_ap wlp60s0 wlp60s0'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
 

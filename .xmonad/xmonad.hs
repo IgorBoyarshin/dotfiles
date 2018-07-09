@@ -70,6 +70,15 @@ main = do
            ((mod4Mask, xK_q),
                 restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
 
+           ((mod1Mask, xK_Up),
+                spawn "~/.inc_brightness.zsh"),
+           ((mod1Mask, xK_Down),
+                spawn "~/.dec_brightness.zsh"),
+           ((mod1Mask, xK_Left),
+                spawn "~/.off_brightness.zsh"),
+           ((mod1Mask, xK_Right),
+                spawn "~/.max_brightness.zsh"),
+
            ((mod1Mask, xK_m),
                 spawn "~/.set-volume.zsh toggle"),
                 -- spawn "pactl set-sink-mute 0 toggle"),

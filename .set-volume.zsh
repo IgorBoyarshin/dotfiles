@@ -5,8 +5,15 @@ get_volume() {
     # volume=$(${input} | grep -o -m 1 "[[:digit:]]*% | tr -d '%'")
     # status=$(${input} | grep -o -m 1 "\[(on|off)\]")
 
-    volume_level=$(amixer sget Master | grep -o -m 1 "[[:digit:]]*%")
-    volume_status=$(amixer sget Master | grep -E -o -m 1 "\[(on|off)\]")
+    if [[ $(amixer sget Master) = "" ]]; then
+        echo "11"
+        volume_level=$(amixer sget Speaker | grep -o -m 1 "[[:digit:]]*%")
+        volume_status=$(amixer sget Speaker | grep -E -o -m 1 "\[(on|off)\]")
+    else
+        echo "22"
+        volume_level=$(amixer sget Master | grep -o -m 1 "[[:digit:]]*%")
+        volume_status=$(amixer sget Master | grep -E -o -m 1 "\[(on|off)\]")
+    fi
 
     colored_volume_status=0
     if [[ "$volume_status" == "[on]" ]]; then
@@ -25,21 +32,45 @@ get_volume() {
   # echo ${vol}% + "<fc=#ff0000>cat</fc>" | tee /tmp/.volume-pipe
 }
 
-case $1 in
-  "")
-    ;;
-  "up")
-    amixer set Master 5+ >/dev/null
-    ;;
-  "down")
-    amixer set Master 5- > /dev/null
-    ;;
-  "toggle")
-    amixer set Master "toggle" >/dev/null
-    ;;
-  *)
-    echo "unknown command"
-    exit 1
-    ;;
-esac
+
+if [[ $(amixer sget Master) = "" ]]; then
+    echo "11"
+    case $1 in
+      "")
+        ;;
+      "up")
+        amixer set Speaker 5+ >/dev/null
+        ;;
+      "down")
+        amixer set Speaker 5- > /dev/null
+        ;;
+      "toggle")
+        amixer set Speaker "toggle" >/dev/null
+        ;;
+      *)
+        echo "unknown command"
+        exit 1
+        ;;
+    esac
+else
+    echo "22"
+    case $1 in
+      "")
+        ;;
+      "up")
+        amixer set Master 5+ >/dev/null
+        ;;
+      "down")
+        amixer set Master 5- > /dev/null
+        ;;
+      "toggle")
+        amixer set Master "toggle" >/dev/null
+        ;;
+      *)
+        echo "unknown command"
+        exit 1
+        ;;
+    esac
+fi
+
 get_volume
