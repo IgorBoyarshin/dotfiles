@@ -70,14 +70,12 @@ main = do
            ((mod4Mask, xK_q),
                 restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
 
-           ((mod1Mask, xK_Up),
-                spawn "~/.inc_brightness.zsh"),
-           ((mod1Mask, xK_Down),
-                spawn "~/.dec_brightness.zsh"),
-           ((mod1Mask, xK_Left),
-                spawn "~/.off_brightness.zsh"),
-           ((mod1Mask, xK_Right),
-                spawn "~/.max_brightness.zsh"),
+           ((controlMask .|. mod1Mask, xK_equal),
+                spawn "~/.set_brightness.zsh up"),
+           ((controlMask .|. mod1Mask, xK_minus),
+                spawn "~/.set_brightness.zsh down"),
+           ((controlMask .|. mod1Mask, xK_0),
+                spawn "~/.set_brightness.zsh toggle"),
 
            ((mod1Mask, xK_m),
                 spawn "~/.set-volume.zsh toggle"),
@@ -96,8 +94,3 @@ myWorkspaces = ["1:tmux", "2:web", "3:tg"]
                     ++ map show [4, 5]
                     ++ ["6:bg"]
                     ++ map show [7..9]
-
--- spawnToWorkspace :: String -> String -> X ()
--- spawnToWorkspace program workspace = do
---                                       spawn program
---                                       windows $ W.greedyView workspace

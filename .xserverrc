@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/sh
 
 # The second argument (-arinterval <...>) uses delay, whereas xset uses frequency.
 # So, for example, xset r rate 250 40 === ... -ardelay 250 -arinterval 25

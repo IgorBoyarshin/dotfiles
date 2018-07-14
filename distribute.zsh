@@ -12,6 +12,7 @@ rsync -ah .screenshot-capture.zsh ~/
 rsync -ah .screenshot-delay-3.zsh ~/
 rsync -ah .screenshot.zsh ~/
 rsync -ah .set-volume.zsh ~/
+rsync -ah .set_brightness.zsh ~/
 rsync -ah .xinitrc ~/
 rsync -ah .Xresources ~/
 rsync -ah .xserverrc ~/

@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tomtom/tcomment_vim' " comments with Ctrl+//
-" Plug 'neomake/neomake' "async linting
+Plug 'neomake/neomake' "async linting
 " async code completion:
 " TODO: reenable
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'java' }
@@ -45,7 +45,7 @@ Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'nvie/vim-flake8', {'for': 'python'}
 
 
-Plug 'https://github.com/vim-syntastic/syntastic'
+" Plug 'https://github.com/vim-syntastic/syntastic'
 
 
 " Haskell
@@ -63,19 +63,19 @@ call plug#end()
 " ----------------------------------------------------------
 " --------------------- Plugins settings begin -------------
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "W"
-let g:syntastic_loc_list_height = 5
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_error_symbol = "✗"
+" let g:syntastic_warning_symbol = "W"
+" let g:syntastic_loc_list_height = 5
 
-let g:syntastic_cpp_compiler_options = ' -std=c++17'
+" let g:syntastic_cpp_compiler_options = ' -std=c++17'
 
 " Haskell plugins
 
@@ -142,20 +142,27 @@ noremap <silent> tq :<C-U>GhcModType<CR>
 
 
 " Run Neomake on every read and write
-" autocmd! BufReadPost,BufWritePost * Neomake
-" TODO: on github they say to do this instead:
+autocmd! BufReadPost,BufWritePost * Neomake
+" I don't use the following because it ignores buffer write with no changes
 " call neomake#configure#automake('rw')
 " Open the list automatically
-" let g:neomake_open_list = 2
-" let g:neomake_list_height = 4
-" let g:neomake_warning_sign = {
-"     \ 'text': '⚠',
-"     \ 'texthl': 'WarningMsg',
-"     \ }
-" let g:neomake_error_sign = {
-"     \ 'text': '✖',
-"     \ 'texthl': 'ErrorMsg',
-"     \ }
+let g:neomake_open_list = 2
+let g:neomake_list_height = 6
+let g:neomake_warning_sign = {
+    \ 'text': '⚠',
+    \ 'texthl': 'WarningMsg',
+    \ }
+let g:neomake_error_sign = {
+    \ 'text': '✖',
+    \ 'texthl': 'ErrorMsg',
+    \ }
+
+" Auto-close on exit
+autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
+            \   q :cclose<cr>:lclose<cr>
+autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
+            \   bd|
+            \   q | endif
 
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
@@ -283,11 +290,11 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
+    set t_Co=16
 endif
 
 if &history < 1000
-  set history=1000
+    set history=1000
 endif
 
 no <up> ddkP
@@ -336,14 +343,14 @@ set display+=lastline
 
 " Make the 80th column visible
 if exists('+colorcolumn')
-  set colorcolumn=80
+    set colorcolumn=80
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
 " TODO: works??
@@ -366,11 +373,11 @@ abbr stirng string
 
 
 function! ClipboardYank()
-  call system('xclip -i -selection clipboard', @@)
+    call system('xclip -i -selection clipboard', @@)
 endfunction
 
 function! ClipboardPaste()
-  let @@ = system('xclip -o -selection clipboard')
+    let @@ = system('xclip -o -selection clipboard')
 endfunction
 
 vnoremap <silent> y y:call ClipboardYank()<cr>
@@ -405,63 +412,63 @@ finish
 
 
 if exists('g:loaded_sensible') || &compatible
-  finish
+    finish
 else
-  let g:loaded_sensible = 'yes'
+    let g:loaded_sensible = 'yes'
 endif
 
 if has('autocmd')
-  filetype plugin indent on
+    filetype plugin indent on
 endif
 if has('syntax') && !exists('g:syntax_on')
-  syntax enable
+    syntax enable
 endif
 
 if !has('nvim') && &ttimeoutlen == -1
-  set ttimeout
-  set ttimeoutlen=100
+    set ttimeout
+    set ttimeoutlen=100
 endif
 
 
 if !&scrolloff
-  set scrolloff=1
+    set scrolloff=1
 endif
 if !&sidescrolloff
-  set sidescrolloff=5
+    set sidescrolloff=5
 endif
 
 if &encoding ==# 'latin1' && has('gui_running')
-  set encoding=utf-8
+    set encoding=utf-8
 endif
 
 if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
 if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j " Delete comment character when joining commented lines
+    set formatoptions+=j " Delete comment character when joining commented lines
 endif
 
 if has('path_extra')
-  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+    setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/bin/bash
+    set shell=/bin/bash
 endif
 
 
 if &tabpagemax < 50
-  set tabpagemax=50
+    set tabpagemax=50
 endif
 if !empty(&viminfo)
-  set viminfo^=!
+    set viminfo^=!
 endif
 
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
+    runtime! macros/matchit.vim
 endif
 
 

@@ -31,7 +31,7 @@ URxvt.cursorColor: #bbbbbb
 ! URxvt*fadeColor: #002b36
 
 ! Needed??
-XTerm*termName: xterm-256color
+! XTerm*termName: xterm-256color
 
 URxvt*termName: rxvt-unicode
 

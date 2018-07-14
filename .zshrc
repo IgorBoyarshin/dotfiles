@@ -20,7 +20,7 @@ alias mntc='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000'
 alias umntc='sudo umount'
 
 # Places
-alias notes='cd ~/Stuff/notes'
+alias notes='cd ~/Stuff/Notes'
 alias audio='cd ~/Storage/Audio/Main'
 alias ger1='djvu ~/Storage/Studying/German/GER_Kamyanova_Praktichesky_kurs_nemetskogo_yazyka.djvu'
 alias ger2='djvu ~/Storage/Studying/German/GER_20-\ Практический\ курс\ немецкого\ языка_Завьялова\ Ильина_2005\ 6-е\ изд\ \(with\ Audio\).djvu'
@@ -48,13 +48,13 @@ alias updp='sudo pacman -Syu'
 alias updt='trizen -Syu --noconfirm'
 alias rmvp='sudo pacman -Rns'
 alias rmvt='trizen -Rns'
-alias info='vim ~/Stuff/notes/info.txt'
-alias inst='vim ~/Stuff/notes/packages.txt'
+alias info='vim ~/Stuff/Notes/info.txt'
+alias inst='vim ~/Stuff/Notes/packages.txt'
 alias vimrc='vim ~/dotfiles/.vimrc'
 alias zshrc='vim ~/dotfiles/.zshrc'
 alias lsr='ls -alrth'
 alias c='clear'
-alias mkwifi='sudo create_ap wlp60s0 wlp60s0'
+alias mkwifi='sudo create_ap wlp60s0 wlp60s0 Igorek password'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
 
@@ -82,7 +82,6 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export FONTCONFIG_PATH=/etc/fonts
 
 export EDITOR='vim'
-# export TERMINAL='vim'
 
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -92,22 +91,36 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
 # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_SHORTEN_DELIMITER=".."
+# POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{black} $(print $'\uE0B1') "
 POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"
+# POWERLEVEL9K_HOME_FOLDER_ABBREVIATION="%F{red}~%F{black}"
 # POWERLEVEL9K_USER_ICON=''
-# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%F{black}$(print $'\uE0B1')"
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%K{cyan}%F{black}$(print $'\uE0B1')%k"
+# POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
+# POWERLEVEL9K_DIR_PATH_SEPARATOR_FOREGROUND='white'
+# POWERLEVEL9K_USER_TEMPLATE="%f"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='blue'
+POWERLEVEL9K_CONTEXT_TEMPLATE="%K{red}a%k"
+# POWERLEVEL9K_CONTEXT_TEMPLATE="%n  %F{red}a"
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_TIME_ICON=''
 POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='cyan'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='cyan'
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
+POWERLEVEL9K_USER_DEFAULT_FOREGROUND='yellow'
+POWERLEVEL9K_USER_DEFAULT_BACKGROUND='black'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
 # POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='grey'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='white'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
