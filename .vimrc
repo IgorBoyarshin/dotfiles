@@ -40,6 +40,10 @@ Plug 'tpope/vim-surround'
 " Russian mode support
 Plug 'vim-scripts/ruscmd'
 
+" GLSL syntax highlight
+Plug 'tikhomirov/vim-glsl'
+Plug 'beyondmarc/opengl.vim'
+
 " Python
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'nvie/vim-flake8', {'for': 'python'}
@@ -148,14 +152,19 @@ autocmd! BufReadPost,BufWritePost * Neomake
 " Open the list automatically
 let g:neomake_open_list = 2
 let g:neomake_list_height = 6
+" To see possible values for texthl, see :highlight
 let g:neomake_warning_sign = {
-    \ 'text': '⚠',
-    \ 'texthl': 'WarningMsg',
+    \ 'text': 'W',
+    \ 'texthl': 'CursorLineNr',
     \ }
 let g:neomake_error_sign = {
     \ 'text': '✖',
-    \ 'texthl': 'ErrorMsg',
+    \ 'texthl': 'WarningMsg',
     \ }
+" Cool possible chars: "⚠", "✖", "×"
+
+
+noremap <silent> '' :Neomake<CR>
 
 " Auto-close on exit
 autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
@@ -398,6 +407,12 @@ au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 "   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 "   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 " augroup END
+
+
+nmap <C-k> I#include <<ESC>A><ESC>
+imap <C-k> <ESC>I#include <<ESC>A><ESC>
+nmap <C-o> I#include "<ESC>A"<ESC>
+imap <C-o> <ESC>I#include "<ESC>A"<ESC>
 
 
 " ----------------------------- Vim(Neovim) settings end ----------------------

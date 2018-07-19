@@ -38,6 +38,8 @@ alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
 alias rr='ranger'
+alias wea='curl wttr.in/kive'
+alias tusk='/opt/Tusk/tusk-app'
 
 # Usual
 alias instp='sudo pacman -S'
@@ -60,13 +62,14 @@ alias src='source ~/.zshrc'
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
 
+# Otherwise zsh complains
 export TERM="rxvt-256color"
 
-export XDG_CONFIG_HOME="~/.config"
+# If ypu uncomment this, apps will create ~/~ and store their configs there
+# export XDG_CONFIG_HOME="~/.config"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/igorek/.oh-my-zsh
-
 
 # For MPD
 export MPD_HOST=$HOME/.config/mpd/socket
@@ -92,8 +95,8 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
 POWERLEVEL9K_SHORTEN_DELIMITER=".."
 POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="$(print $'\uE0B0')"
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='16'
-POWERLEVEL9K_CONTEXT_TEMPLATE="%K{16}%F{226}%n"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='232'
+POWERLEVEL9K_CONTEXT_TEMPLATE="%K{232}%F{226}%n"
 # POWERLEVEL9K_HOME_FOLDER_ABBREVIATION="%F{black}~%F{black}"
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''

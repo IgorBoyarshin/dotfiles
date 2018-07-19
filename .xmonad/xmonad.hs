@@ -40,6 +40,7 @@ main = do
                 manageDocks,
                 className =? "TelegramDesktop" --> doF (W.shift (myWorkspaces !! 2)),
                 className =? "Google-chrome" --> doF (W.shift (myWorkspaces !! 1)),
+                className =? "OpenGL Test" --> doFloat,
                 isFullscreen --> doFullFloat,
                 manageHook desktopConfig
             ],
