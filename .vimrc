@@ -1,12 +1,7 @@
 " This is the configuration file for Vim(NeoVim)
-
-
 set rtp+=~/.local/share/nvim/site/autoload/plug.vim
-
 " ----------------------------------------------------------
 " --------------------- Vim-Plug begin ---------------------
-
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 " List all plugins here:
@@ -19,7 +14,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'tomtom/tcomment_vim' " comments with Ctrl+//
 Plug 'neomake/neomake' "async linting
 " async code completion:
-" TODO: reenable
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'java' }
 " Plug 'rustushki/JavaImp.vim'
 Plug 'Yggdroot/indentLine'          " indentation with vertical markers
@@ -108,8 +103,8 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 " Jump between errors(warnings)
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
-noremap <C-k> :cp<CR>
-noremap <C-j> :cn<CR>
+" noremap <C-k> :cp<CR>
+" noremap <C-j> :cn<CR>
 
 " function! LinterStatus() abort
 "     let l:counts = ale#statusline#Count(bufnr(''))
@@ -162,11 +157,17 @@ let g:neomake_error_sign = {
     \ 'texthl': 'WarningMsg',
     \ }
 " Cool possible chars: "⚠", "✖", "×"
+" let g:neomake_cpp_enable_markers=['gcc']
+let g:neomake_cpp_gcc_args = ['-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno-unused-variable', '-std=c++17']
+
+" nnoremap [ :lnext<CR>
+" nnoremap ] :lprev<CR>
 
 
+" Compile (run linter)
 noremap <silent> '' :Neomake<CR>
 
-" Auto-close on exit
+" Auto-close quickfix on exit
 autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
             \   q :cclose<cr>:lclose<cr>
 autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
@@ -231,6 +232,16 @@ set background=dark
 let g:solarized_termcolors=256
 "let g:solarized_termtrans=1 " for transparent background
 colorscheme solarized
+" Personal changes to colors
+highlight Comment ctermfg=240
+highlight Normal ctermbg=233 ctermfg=248
+highlight Type ctermfg=172
+highlight Statement ctermfg=70
+highlight Special ctermfg=160
+" 69, 27
+highlight Constant ctermfg=105
+highlight PreProc ctermfg=202 
+highlight vimCommand ctermfg=172
 
 let g:tmuxline_preset = 'tmux'
 
@@ -251,17 +262,12 @@ autocmd FileType java inoremap sout<Tab> System.out.println();<Esc>F(a
 
 " Compilation for R Markdown
 autocmd FileType rmd noremap <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
-
-
-"
-" map <C-\> :NERDTreeToggle<CR>
-
-
 " ---------------------------- Plugins settings end ---------------------------
 " -----------------------------------------------------------------------------
 " ------------------------- Vim(Neovim) settings begin ------------------------
 " Use Space Bar to put a space
 nnoremap <Space> i<Space><Esc>
+nnoremap <CR> a<Space><Esc>
 
 
 " Highlights the current search match.
@@ -324,8 +330,8 @@ noremap J 5j
 noremap K 5k
 
 " Paste with new line
-nmap gP O<C-r>*<ESC>
-nmap gp o<C-r>*<ESC>
+nmap gP O<Space><ESC>Plx
+nmap gp o<Space><ESC>Plx
 
 " Visual block shift
 vnoremap < <gv
@@ -339,7 +345,7 @@ nnoremap g<C-O> o<ESC>k
 " Spell checking
 noremap <F6> :setlocal spell! spelllang=en_us<CR>
 
-set number      " display line numbers
+set number " display line numbers
 set encoding=utf-8
 
 " Display Tab and Eol chars
@@ -415,17 +421,13 @@ nmap <C-o> I#include "<ESC>A"<ESC>
 imap <C-o> <ESC>I#include "<ESC>A"<ESC>
 
 
+" Remove whitespaces from the end of the lines
+nmap <C-s> :%s/\s*$//<CR><C-L>
 " ----------------------------- Vim(Neovim) settings end ----------------------
 " -----------------------------------------------------------------------------
-
-
 finish
-
-
 " -----------------------------------------------------------------------------
 " ----------------------------- Unknown setings start -------------------------
-
-
 if exists('g:loaded_sensible') || &compatible
     finish
 else
@@ -485,7 +487,5 @@ endif
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
 endif
-
-
 " ---------------------------- Unknown setings end ----------------------------
 " -----------------------------------------------------------------------------

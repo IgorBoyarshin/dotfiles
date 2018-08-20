@@ -21,6 +21,10 @@ alias umntc='sudo umount'
 
 # Places
 alias notes='cd ~/Stuff/Notes'
+alias notesvim='vim ~/Stuff/Notes/vim.txt'
+alias notesgit='vim ~/Stuff/Notes/git.txt'
+alias notescppc='vim ~/Stuff/Notes/coding/cpp_code.cpp'
+alias notescppi='vim ~/Stuff/Notes/coding/cpp_info.txt'
 alias audio='cd ~/Storage/Audio/Main'
 alias ger1='djvu ~/Storage/Studying/German/GER_Kamyanova_Praktichesky_kurs_nemetskogo_yazyka.djvu'
 alias ger2='djvu ~/Storage/Studying/German/GER_20-\ Практический\ курс\ немецкого\ языка_Завьялова\ Ильина_2005\ 6-е\ изд\ \(with\ Audio\).djvu'
@@ -38,7 +42,7 @@ alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
 alias rr='ranger'
-alias wea='curl wttr.in/kive'
+alias wea='curl wttr.in/kiev'
 alias tusk='/opt/Tusk/tusk-app'
 
 # Usual
@@ -175,7 +179,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd/mm/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
