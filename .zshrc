@@ -34,7 +34,7 @@ alias sem6='cd ~/Storage/Studying/Semester\ 6'
 # Programs
 alias vim='nvim'
 alias svim='sudo -E nvim'
-alias evernote='nixnote2'
+alias evernote='tusk'
 alias djvu='djview'
 alias pdf='evince'
 alias img='nomacs'

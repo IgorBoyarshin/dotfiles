@@ -295,10 +295,10 @@ set laststatus=2    " always display the status line
 set ruler
 set wildmenu
 
-" TODO: works??
+" works not instanteniously, so better not use at all
 " Reloads the file automatically if it has been changed outside of Vim
-set autoread
-au CursorHold * checktime
+" set autoread
+" au CursorHold * checktime
 
 set nrformats-=octal
 inoremap <C-U> <C-G>u<C-U>
@@ -343,7 +343,8 @@ nnoremap g<C-O> o<ESC>k
 
 
 " Spell checking
-noremap <F6> :setlocal spell! spelllang=en_us<CR>
+" noremap <F6> :setlocal spell! spelllang=en_us<CR>
+noremap <F6> :setlocal spell! spelllang=ru_RU<CR>
 
 set number " display line numbers
 set encoding=utf-8
@@ -385,6 +386,7 @@ abbr unsinged unsigned
 abbr whiel while
 abbr inclued include
 abbr stirng string
+abbr шеуь item
 
 
 function! ClipboardYank()
