@@ -36,7 +36,7 @@ alias vim='nvim'
 alias svim='sudo -E nvim'
 alias evernote='tusk'
 alias djvu='djview'
-alias pdf='evince'
+alias pdf='zathura'
 alias img='nomacs'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
@@ -44,6 +44,7 @@ alias draw='libreoffice --draw'
 alias rr='ranger'
 alias wea='curl wttr.in/kiev'
 alias tusk='/opt/Tusk/tusk-app'
+alias sdocker='sudo docker'
 
 # Usual
 alias instp='sudo pacman -S'
@@ -63,8 +64,13 @@ alias c='clear'
 alias mkwifi='sudo create_ap wlp60s0 wlp60s0 Igorek password'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
+alias run='./run.zsh'
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
+
+# Rust. Racer
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export PATH=$PATH:/home/igorek/.cargo/bin
 
 # Otherwise zsh complains
 export TERM="rxvt-256color"

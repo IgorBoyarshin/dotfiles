@@ -39,9 +39,26 @@ Plug 'vim-scripts/ruscmd'
 Plug 'tikhomirov/vim-glsl'
 Plug 'beyondmarc/opengl.vim'
 
+" LSP
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Python
-Plug 'python-mode/python-mode', {'for': 'python'}
+" Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'nvie/vim-flake8', {'for': 'python'}
+
+"Latex
+Plug 'lervag/vimtex'
+
+
+" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
 
 
 " Plug 'https://github.com/vim-syntastic/syntastic'
@@ -61,6 +78,31 @@ call plug#end()
 " --------------------- Vim-Plug end -----------------------
 " ----------------------------------------------------------
 " --------------------- Plugins settings begin -------------
+" Latex
+let g:tex_conceal = ""
+let g:md_conceal = ""
+
+
+" LSP. Rust
+set hidden
+let g:racer_experimental_completer = 1
+
+let g:LanguageClient_autoStart = 0
+nnoremap <leader>lspa :LanguageClientStart<CR>
+nnoremap <leader>lspo :LanguageClientStart<CR>
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+
+autocmd FileType rust inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+autocmd FileType rust inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=menuone,noselect,noinsert
+set shortmess+=c
+
+autocmd FileType rust inoremap <c-p> <c-x><c-o>
+
+
 " Syntastic
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -87,10 +129,11 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 " \}
 " " \    'haskell': ['ghc-mod', 'hlint']
 "
-" let g:ale_sign_error = '×'
+" let g:ale_sign_error = '✖'
 " let g:ale_sign_warning = 'W'
 " let g:airline#extensions#ale#enabled = 1
 " let g:ale_lint_on_text_changed = 'never'
+" let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
 " let g:ale_open_list = 1
 " let g:ale_list_window_size = 6
@@ -99,8 +142,11 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 " let g:ale_pattern_options = {
 " \   'notes.*': {'ale_enabled': 0},
 " \}
+"
+" let g:ale_rust_cargo_use_check = 1
+" let g:ale_rust_cargo_check_all_targets = 1
 
-" Jump between errors(warnings)
+" " Jump between errors(warnings)
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " noremap <C-k> :cp<CR>
@@ -121,27 +167,31 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 "
 " set statusline=%{LinterStatus()}
 
+"------------------------------------------------------------------------------
 " haskell-vim
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-let g:haskell_indent_if = 2               " Align 'then' two spaces after 'if'
-let g:haskell_indent_before_where = 4     " Indent 'where' block two spaces under previous body
-let g:haskell_indent_case_alternative = 1 " Allow a second case indent style (see haskell-vim README)
-let g:haskell_indent_let_no_in = 0        " Only next under 'let' if there's an equals sign
+" let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+" let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+" let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+" let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+" let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+" let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+" let g:haskell_indent_if = 2               " Align 'then' two spaces after 'if'
+" let g:haskell_indent_before_where = 4     " Indent 'where' block two spaces under previous body
+" let g:haskell_indent_case_alternative = 1 " Allow a second case indent style (see haskell-vim README)
+" let g:haskell_indent_let_no_in = 0        " Only next under 'let' if there's an equals sign
 
 " ghc-mod
 noremap <silent> tw :<C-U>GhcModTypeInsert<CR>
 noremap <silent> tq :<C-U>GhcModType<CR>
 
 
-
+"------------------------------------------------------------------------------
+" Place language name here
+let neomake_blacklist = ['tex', 'rust']
 " Run Neomake on every read and write
-autocmd! BufReadPost,BufWritePost * Neomake
+autocmd! BufReadPost,BufWritePost * if index(neomake_blacklist, &ft) < 0 | Neomake
+
 " I don't use the following because it ignores buffer write with no changes
 " call neomake#configure#automake('rw')
 " Open the list automatically
@@ -160,6 +210,14 @@ let g:neomake_error_sign = {
 " let g:neomake_cpp_enable_markers=['gcc']
 let g:neomake_cpp_gcc_args = ['-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno-unused-variable', '-std=c++17']
 
+
+" Just an example
+" let g:neomake_make_maker = {
+"     \ 'exe': 'make',
+"     \ 'args': ['--build'],
+"     \ 'errorformat': '%f:%l:%c: %m',
+"     \ }
+
 " nnoremap [ :lnext<CR>
 " nnoremap ] :lprev<CR>
 
@@ -175,7 +233,9 @@ autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
             \   q | endif
 
 " Use deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+" Install:
+" :> pip3 install --user pynvim
 
 " IndentLine settings
 " let g:indentLine_setColors = 0
@@ -206,14 +266,14 @@ let g:pymode_lint = 0
 let g:JavaComplete_EnableDefaultMappings = 0
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " TODO: make java-only
-nnoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-inoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
-nnoremap <F5> <Plug>(JavaComplete-Imports-Add)
-inoremap <F5> <Plug>(JavaComplete-Imports-Add)
-nnoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-inoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-nnoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
-inoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+" nnoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+" inoremap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+" nnoremap <F5> <Plug>(JavaComplete-Imports-Add)
+" inoremap <F5> <Plug>(JavaComplete-Imports-Add)
+" nnoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+" inoremap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+" nnoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+" inoremap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
 
 " For airline
@@ -240,7 +300,7 @@ highlight Statement ctermfg=70
 highlight Special ctermfg=160
 " 69, 27
 highlight Constant ctermfg=105
-highlight PreProc ctermfg=202 
+highlight PreProc ctermfg=202
 highlight vimCommand ctermfg=172
 
 let g:tmuxline_preset = 'tmux'
@@ -261,7 +321,7 @@ autocmd FileType java inoremap sout<Tab> System.out.println();<Esc>F(a
 
 
 " Compilation for R Markdown
-autocmd FileType rmd noremap <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+" autocmd FileType rmd noremap <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 " ---------------------------- Plugins settings end ---------------------------
 " -----------------------------------------------------------------------------
 " ------------------------- Vim(Neovim) settings begin ------------------------
@@ -369,6 +429,28 @@ if maparg('<C-L>', 'n') ==# ''
     nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+
+" TODO
+" nnoremap <silent> n n:call HLNext(0.4)<cr>
+" nnoremap <silent> N N:call HLNext(0.4)<cr>
+"
+" function! HLNext (blinktime)
+"     let [bufnum, lnum, col, off] = getpos('.')
+"     let matchlen = strlen(matchstr(strpart(getline('.'), col-1),@/))
+"     let target_pat = '\c\%#'.@/
+"     let blinks = 3
+"     for n in range(1,blinks)
+"         let red = matchadd('WhiteOnRed', target_pat, 101)
+"         redraw
+"         exec 'sleep ' . float2nr(a:blinktime / 2*(blinks) * 1000) . 'm'
+"         call matchdelete(red)
+"         redraw
+"         exec 'sleep ' . float2nr(a:blinktime / 2*(blinks) * 1000) . 'm'
+"     endfor
+" endfunction
+
+
+
 " TODO: works??
 " set clipboard=unnamed ",unnamedplus
 " set clipboard^=unnamed,unnamedplus
@@ -376,6 +458,9 @@ set clipboard=unnamedplus
 
 " To fix the delay when exiting Insert mode
 set timeoutlen=1000 ttimeoutlen=0
+
+" Enable autocompletion for bottom bar
+set wildmode=longest,list,full
 
 " Abbreviations
 abbr cosnt const
@@ -417,10 +502,10 @@ au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 " augroup END
 
 
-nmap <C-k> I#include <<ESC>A><ESC>
-imap <C-k> <ESC>I#include <<ESC>A><ESC>
-nmap <C-o> I#include "<ESC>A"<ESC>
-imap <C-o> <ESC>I#include "<ESC>A"<ESC>
+" nmap <C-k> I#include <<ESC>A><ESC>
+" imap <C-k> <ESC>I#include <<ESC>A><ESC>
+" nmap <C-o> I#include "<ESC>A"<ESC>
+" imap <C-o> <ESC>I#include "<ESC>A"<ESC>
 
 
 " Remove whitespaces from the end of the lines
