@@ -222,6 +222,10 @@ let g:neomake_cpp_gcc_args = ['-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno
 " nnoremap ] :lprev<CR>
 
 
+" Temporary. Python
+nnoremap <leader>r :silent term python draw.py<CR>
+
+
 " Compile (run linter)
 noremap <silent> '' :Neomake<CR>
 
@@ -404,7 +408,9 @@ nnoremap g<C-O> o<ESC>k
 
 " Spell checking
 " noremap <F6> :setlocal spell! spelllang=en_us<CR>
-noremap <F6> :setlocal spell! spelllang=ru_RU<CR>
+noremap <F5> :setlocal spell! spelllang=en<CR>
+noremap <F6> :setlocal spell! spelllang=ru<CR>
+noremap <F7> :setlocal spell! spelllang=uk<CR>
 
 set number " display line numbers
 set encoding=utf-8
@@ -509,7 +515,7 @@ au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
 
 " Remove whitespaces from the end of the lines
-nmap <C-s> :%s/\s*$//<CR><C-L>
+nnoremap <C-s> :%s/\s*$//<CR><C-L>
 " ----------------------------- Vim(Neovim) settings end ----------------------
 " -----------------------------------------------------------------------------
 finish
