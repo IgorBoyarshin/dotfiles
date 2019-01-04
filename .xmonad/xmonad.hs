@@ -78,6 +78,11 @@ main = do
            ((controlMask .|. mod1Mask, xK_0),
                 spawn "~/.set_brightness.zsh toggle"),
 
+           ((controlMask, xK_Down),
+                spawn "~/.set_backlight.zsh 0"),
+           ((controlMask, xK_Up),
+                spawn "~/.set_backlight.zsh 1"),
+
            ((mod1Mask, xK_m),
                 spawn "~/.set-volume.zsh toggle"),
                 -- spawn "pactl set-sink-mute 0 toggle"),

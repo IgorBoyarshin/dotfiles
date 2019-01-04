@@ -45,6 +45,9 @@ alias rr='ranger'
 alias wea='curl wttr.in/kiev'
 alias tusk='/opt/Tusk/tusk-app'
 alias sdocker='sudo docker'
+alias redr='redshift -x'
+alias redn='redshift -P -O 2500'
+alias rede='redshift -P -O 3000'
 
 # Usual
 alias instp='sudo pacman -S'
