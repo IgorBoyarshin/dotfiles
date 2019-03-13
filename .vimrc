@@ -66,9 +66,9 @@ Plug 'roxma/nvim-yarp'
 
 " Haskell
 " Plug 'w0rp/ale' " async linting
-Plug 'Shougo/vimproc.vim', {'do' : 'make'} " required for ghcmod-vim
 Plug 'neovimhaskell/haskell-vim'
 " Plug 'dag/vim2hs'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'} " required for ghcmod-vim
 Plug 'eagletmt/ghcmod-vim'
 "
 "
@@ -87,9 +87,10 @@ let g:md_conceal = ""
 set hidden
 let g:racer_experimental_completer = 1
 
-let g:LanguageClient_autoStart = 0
+let g:LanguageClient_autoStart = 1
 nnoremap <leader>lspa :LanguageClientStart<CR>
-nnoremap <leader>lspo :LanguageClientStart<CR>
+nnoremap <leader>lspo :LanguageClientStop<CR>
+nnoremap <leader>ls :LanguageClientStop<CR>
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
 
@@ -332,7 +333,6 @@ autocmd FileType java inoremap sout<Tab> System.out.println();<Esc>F(a
 " Use Space Bar to put a space
 nnoremap <Space> i<Space><Esc>
 nnoremap <CR> a<Space><Esc>
-
 
 " Highlights the current search match.
 " Navigate through them while still in search mode with Ctrl-G and Ctrl-T.

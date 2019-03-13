@@ -29,7 +29,6 @@ rsync -ah ~/.ncmpcpp/config ./.ncmpcpp/
 
 mkdir -p .xmonad
 rsync -ah ~/.xmonad/build.rm_ext .xmonad/
-rsync -ah ~/.xmonad/build .xmonad/
 rsync -ah ~/.xmonad/stack.yaml .xmonad/
 rsync -ah ~/.xmonad/.xmobarrc .xmonad/
 rsync -ah ~/.xmonad/xmonad.hs .xmonad/
