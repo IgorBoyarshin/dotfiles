@@ -96,7 +96,6 @@ main = do
 
 
 myWorkspaces :: [String]
-myWorkspaces = ["1:tmux", "2:web", "3:tg"]
-                    ++ map show [4, 5]
-                    ++ ["6:bg"]
-                    ++ map show [7..9]
+myWorkspaces = ["1:dev", "2:web", "3:tg"]
+                    ++ map show [4..8]
+                    ++ ["9:bg"]
