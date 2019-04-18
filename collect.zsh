@@ -61,4 +61,4 @@ rsync -ah ~/.newsboat/urls .newsboat/urls
 
 rsync -ah ~/.fehbg .fehbg
 
-
+rsync -ah ~/.load.zsh .load.zsh

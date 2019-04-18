@@ -67,9 +67,13 @@ alias zshrc='vim ~/dotfiles/.zshrc'
 alias lsr='ls -alrth'
 alias c='clear'
 alias mkwifi='sudo create_ap wlp60s0 wlp60s0 Igorek password'
+alias cshut='umnt /mnt/Storage || umnt /mnt/Mutual || shutdown now'
+alias cboot='umnt /mnt/Storage || umnt /mnt/Mutual || reboot'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
 alias run='./run.zsh'
+alias crun='cargo run'
+alias ck='cargo check'
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
 

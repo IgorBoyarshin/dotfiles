@@ -27,6 +27,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'cpp' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': '' }
 Plug 'garbas/vim-snipmate' " This and the following two: for snippets
+" Alternative: sirver/UltiSnips
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 
@@ -61,11 +62,19 @@ Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
 
+" Javascript & Web
+Plug 'gko/vim-coloresque', {'for': 'css'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+" Plug 'leshill/vim-json', {'for': 'javascript'}
+" Uses config at ~/.tern-project
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript'}
+
+
 " Plug 'https://github.com/vim-syntastic/syntastic'
 
 
 " Haskell
-" Plug 'w0rp/ale' " async linting
+Plug 'w0rp/ale' " async linting
 Plug 'neovimhaskell/haskell-vim'
 " Plug 'dag/vim2hs'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " required for ghcmod-vim
@@ -78,6 +87,15 @@ call plug#end()
 " --------------------- Vim-Plug end -----------------------
 " ----------------------------------------------------------
 " --------------------- Plugins settings begin -------------
+" Web
+autocmd FileType javascript noremap <silent> '' :ALELint<CR>
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType json setlocal conceallevel=0
+let g:indentLine_fileTypeExclude = ['json']
+
+autocmd FileType javascript setlocal omnifunc=syntaxcomplete#Complete
+
+
 " Latex
 let g:tex_conceal = ""
 let g:md_conceal = ""
@@ -124,26 +142,37 @@ autocmd FileType rust inoremap <c-p> <c-x><c-o>
 " For ghc-mod:
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
-" " ALE
-" let g:ale_linters = {
-" \    'haskell': ['stack-ghc-mod', 'hlint']
-" \}
-" " \    'haskell': ['ghc-mod', 'hlint']
-"
-" let g:ale_sign_error = '✖'
-" let g:ale_sign_warning = 'W'
-" let g:airline#extensions#ale#enabled = 1
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:ale_open_list = 1
-" let g:ale_list_window_size = 6
-"
-" " Disable ALE for this pattern:
-" let g:ale_pattern_options = {
-" \   'notes.*': {'ale_enabled': 0},
-" \}
-"
+
+" ALE
+let g:ale_linters = {
+\    'haskell': ['stack-ghc-mod', 'hlint'],
+\    'javascript': ['eslint']
+\}
+" \    'haskell': ['ghc-mod', 'hlint']
+
+" Only run explicitly asked for linters
+let g:ale_linters_explicit = 1
+
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = 'W'
+" TODO ????
+highlight ALEWarningSign ctermfg=Magenta
+" highlight ALEWarning ctermfg=Magenta
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+let g:ale_list_window_size = 6
+
+" Disable ALE for this pattern:
+let g:ale_pattern_options = {
+\   '*.rs': {'ale_enabled': 0},
+\   '*.h': {'ale_enabled': 0},
+\   '*.cpp': {'ale_enabled': 0},
+\   'notes.*': {'ale_enabled': 0},
+\}
+
 " let g:ale_rust_cargo_use_check = 1
 " let g:ale_rust_cargo_check_all_targets = 1
 
@@ -189,7 +218,7 @@ noremap <silent> tq :<C-U>GhcModType<CR>
 
 "------------------------------------------------------------------------------
 " Place language name here
-let neomake_blacklist = ['tex', 'rust']
+let neomake_blacklist = ['tex', 'rust', 'js']
 " Run Neomake on every read and write
 autocmd! BufReadPost,BufWritePost * if index(neomake_blacklist, &ft) < 0 | Neomake
 
@@ -224,11 +253,12 @@ let g:neomake_cpp_gcc_args = ['-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno
 
 
 " Temporary. Python
-nnoremap <leader>r :silent term python draw.py<CR>
+" nnoremap <leader>r :silent term python draw.py<CR>
 
 
 " Compile (run linter)
-noremap <silent> '' :Neomake<CR>
+autocmd FileType cpp noremap <silent> '' :Neomake<CR>
+
 
 " Auto-close quickfix on exit
 autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
@@ -292,13 +322,14 @@ set noshowmode
 
 
 " For the Solarized colorscheme
+" (Use :hi to view current)
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
-"let g:solarized_termtrans=1 " for transparent background
+" let g:solarized_termtrans=1 " for transparent background
 colorscheme solarized
 " Personal changes to colors
-highlight Comment ctermfg=240
+highlight Comment ctermfg=241
 highlight Normal ctermbg=233 ctermfg=248
 highlight Type ctermfg=172
 highlight Statement ctermfg=70
@@ -307,6 +338,10 @@ highlight Special ctermfg=160
 highlight Constant ctermfg=105
 highlight PreProc ctermfg=202
 highlight vimCommand ctermfg=172
+
+highlight htmlArg ctermfg=190
+highlight htmlTag ctermfg=10
+highlight htmlEndTag ctermfg=10
 
 let g:tmuxline_preset = 'tmux'
 
@@ -348,6 +383,7 @@ set tabstop=4
 set softtabstop=0   " 0 == when backspacing, delete by spaces, not by tabs
 set shiftwidth=4
 set expandtab
+
 
 set scrolloff=5     " keep 5 lines above and below the cursor
 set smarttab
@@ -516,6 +552,10 @@ au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
 " Remove whitespaces from the end of the lines
 nnoremap <C-s> :%s/\s*$//<CR><C-L>
+
+if has('autocmd')
+    filetype plugin indent on
+endif
 " ----------------------------- Vim(Neovim) settings end ----------------------
 " -----------------------------------------------------------------------------
 finish

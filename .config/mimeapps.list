@@ -14,3 +14,4 @@ application/vnd.ms-excel=libreoffice-calc.desktop
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 application/wps-office.doc=wps-office-wps.desktop;
+text/plain=sublime-text2.desktop;
