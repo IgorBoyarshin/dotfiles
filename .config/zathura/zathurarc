@@ -1,0 +1,12 @@
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map D toggle_page_mode
+map r reload
+map R rotate
+map = zoom in
+map - zoom out
+map i recolor
+set selection-clipboard clipboard
+statusbar-home-tilde true
+window-title-home-tilde true

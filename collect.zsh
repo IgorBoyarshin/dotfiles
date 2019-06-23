@@ -55,6 +55,9 @@ rsync -ah ~/.config/mpv/mpv.conf .config/mpv/
 mkdir -p .config/mpv/lua-settings
 rsync -ah ~/.config/mpv/lua-settings/osc.conf .config/mpv/lua-settings/
 
+mkdir -p .config/zathura
+rsync -ah ~/.config/zathura/zathurarc .config/zathura/
+
 mkdir -p .newsboat
 rsync -ah ~/.newsboat/config .newsboat/config
 rsync -ah ~/.newsboat/urls .newsboat/urls

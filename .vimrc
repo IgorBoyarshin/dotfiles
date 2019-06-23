@@ -27,7 +27,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'cpp' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': '' }
 Plug 'garbas/vim-snipmate' " This and the following two: for snippets
-" Alternative: sirver/UltiSnips
+" (Alternative: sirver/UltiSnips)
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 
@@ -68,6 +68,11 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Plug 'leshill/vim-json', {'for': 'javascript'}
 " Uses config at ~/.tern-project
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript'}
+" Syntax highlighting
+" Plug 'sheerun/vim-polyglot'
+" For fuzzy find (search)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 
 " Plug 'https://github.com/vim-syntastic/syntastic'
@@ -105,7 +110,7 @@ let g:md_conceal = ""
 set hidden
 let g:racer_experimental_completer = 1
 
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_autoStart = 1
 nnoremap <leader>lspa :LanguageClientStart<CR>
 nnoremap <leader>lspo :LanguageClientStop<CR>
 nnoremap <leader>ls :LanguageClientStop<CR>
@@ -218,7 +223,7 @@ noremap <silent> tq :<C-U>GhcModType<CR>
 
 "------------------------------------------------------------------------------
 " Place language name here
-let neomake_blacklist = ['tex', 'rust', 'js']
+let neomake_blacklist = ['tex', 'rust', 'js', 'haskell']
 " Run Neomake on every read and write
 autocmd! BufReadPost,BufWritePost * if index(neomake_blacklist, &ft) < 0 | Neomake
 
@@ -322,7 +327,7 @@ set noshowmode
 
 
 " For the Solarized colorscheme
-" (Use :hi to view current)
+" (Use :hi to view current colors)
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
@@ -492,11 +497,10 @@ endif
 " endfunction
 
 
-
-" TODO: works??
 " set clipboard=unnamed ",unnamedplus
 " set clipboard^=unnamed,unnamedplus
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard=unnamed
 
 " To fix the delay when exiting Insert mode
 set timeoutlen=1000 ttimeoutlen=0
@@ -513,7 +517,6 @@ abbr unsinged unsigned
 abbr whiel while
 abbr inclued include
 abbr stirng string
-abbr шеуь item
 
 
 function! ClipboardYank()

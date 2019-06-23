@@ -31,6 +31,8 @@ alias notescppi='vim ~/Stuff/Notes/coding/cpp_info.txt'
 alias sem8='cd ~/Storage/Studying/Semester\ 8'
 alias stuff='cd ~/Stuff'
 alias down='cd ~/Downloads'
+alias cdcpp='cd ~/Stuff/dev/Cpp'
+alias cdjs='cd ~/Stuff/dev/Javascript'
 # alias ppcs='cd ~/Storage/Studying/Semester\ 6/Programming\ for\ Parallel\ Computer\ Systems/Labs'
 
 # Programs
@@ -74,6 +76,8 @@ alias src='source ~/.zshrc'
 alias run='./run.zsh'
 alias crun='cargo run'
 alias ck='cargo check'
+alias record='ffmpeg -f pulse -ac 2 -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -filter_complex amix=inputs=1 -f x11grab -r 30 -s 1920x1080 -i :0.0+0,0 -vcodec libx264 -preset veryfast -crf 18 -acodec libmp3lame -q:a 1'
+alias record1366='ffmpeg -f pulse -ac 2 -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -filter_complex amix=inputs=1 -f x11grab -r 30 -s 1920x1080 -i :0.0+0,0 -vf scale=1366:768 -vcodec libx264 -preset veryfast -crf 18 -acodec libmp3lame -q:a 1'
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
 
@@ -156,6 +160,10 @@ export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
 export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode
 export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;38;5;200m') # enter underline mode
+
+
+# fzf
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 
 # How long to wait for additional chars in sequence

@@ -33,6 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 
+# to be able to use custom scripts for brightness
 sudo chmod a+w /sys/class/backlight/intel_backlight/brightness
 
 

@@ -40,6 +40,7 @@ main = do
                 manageDocks,
                 className =? "TelegramDesktop" --> doF (W.shift (myWorkspaces !! 2)),
                 className =? "Google-chrome" --> doF (W.shift (myWorkspaces !! 1)),
+                className =? "Brave-browser" --> doF (W.shift (myWorkspaces !! 1)),
                 className =? "OpenGL Test" --> doFloat,
                 isFullscreen --> doFullFloat,
                 manageHook desktopConfig
@@ -71,6 +72,7 @@ main = do
            ((mod4Mask, xK_q),
                 restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
 
+            -- Brightness
            ((controlMask .|. mod1Mask, xK_equal),
                 spawn "~/.set_brightness.zsh up"),
            ((controlMask .|. mod1Mask, xK_minus),
@@ -78,11 +80,19 @@ main = do
            ((controlMask .|. mod1Mask, xK_0),
                 spawn "~/.set_brightness.zsh toggle"),
 
-           ((controlMask, xK_Down),
-                spawn "~/.set_backlight.zsh 0"),
+            -- Gamma correction
+           ((controlMask .|. mod1Mask, xK_Up),
+                spawn "redshift -P -O 6500 -g 1.7:1.7:1.7"),
+           ((controlMask .|. mod1Mask, xK_Down),
+                spawn "redshift -P -O 6500 -g 1:1:1"),
+
+            -- Keys backlight
            ((controlMask, xK_Up),
                 spawn "~/.set_backlight.zsh 1"),
+           ((controlMask, xK_Down),
+                spawn "~/.set_backlight.zsh 0"),
 
+            -- Audio volume
            ((mod1Mask, xK_m),
                 spawn "~/.set-volume.zsh toggle"),
                 -- spawn "pactl set-sink-mute 0 toggle"),
