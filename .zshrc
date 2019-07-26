@@ -81,6 +81,14 @@ alias record1366='ffmpeg -f pulse -ac 2 -i alsa_output.pci-0000_00_1f.3.analog-s
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
 
+
+# For NVM (Node, npm)
+# Commented out because it noticeably slows down the shell load:
+# source /usr/share/nvm/init-nvm.sh
+# Instead, load on-demand
+alias srcnvm='source /usr/share/nvm/init-nvm.sh'
+
+
 # Rust. Racer
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH=$PATH:/home/igorek/.cargo/bin
@@ -113,7 +121,7 @@ export EDITOR='vim'
 # Powerlevel9k settings (must go before the theme setting)
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_SHORTEN_DELIMITER=".."
 POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{black} $(print $'\uE0B1') %F{black}"

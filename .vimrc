@@ -6,7 +6,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " List all plugins here:
 
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree',
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -15,7 +17,6 @@ Plug 'tomtom/tcomment_vim' " comments with Ctrl+//
 Plug 'neomake/neomake' "async linting
 " async code completion:
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'java' }
 " Plug 'rustushki/JavaImp.vim'
 Plug 'Yggdroot/indentLine'          " indentation with vertical markers
 Plug 'Raimondi/delimitMate'         " auto-close brackets, quotes...
@@ -62,7 +63,7 @@ Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
 
-" Javascript & Web
+" Javascript & Web & Typescript
 Plug 'gko/vim-coloresque', {'for': 'css'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Plug 'leshill/vim-json', {'for': 'javascript'}
@@ -73,6 +74,13 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript'}
 " For fuzzy find (search)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+" Autocompletion
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'} " XXX: Install nodejs-tern!!
+" List of deoplete Sources (languages engines):
+" https://github.com/Shougo/deoplete.nvim/wiki/Completion-Sources
+" Typescript:
+Plug 'https://github.com/leafgarland/typescript-vim'
 
 
 " Plug 'https://github.com/vim-syntastic/syntastic'
@@ -84,8 +92,11 @@ Plug 'neovimhaskell/haskell-vim'
 " Plug 'dag/vim2hs'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " required for ghcmod-vim
 Plug 'eagletmt/ghcmod-vim'
-"
-"
+
+" For icons in NerdTree
+Plug 'ryanoasis/vim-devicons'
+
+
 " Code beautifier(Java, C++, ..): https://github.com/uncrustify/uncrustify
 
 call plug#end()
@@ -94,7 +105,8 @@ call plug#end()
 " --------------------- Plugins settings begin -------------
 " Web
 autocmd FileType javascript noremap <silent> '' :ALELint<CR>
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+" Don't conceal hidden characters:
 autocmd FileType json setlocal conceallevel=0
 let g:indentLine_fileTypeExclude = ['json']
 
@@ -221,6 +233,13 @@ noremap <silent> tw :<C-U>GhcModTypeInsert<CR>
 noremap <silent> tq :<C-U>GhcModType<CR>
 
 
+" NerdTree
+map <C-f> :NERDTreeToggle<CR>
+map <C-h> <C-w><C-w>
+let g:NERDTreeDirArrowExpandable = '―'
+let g:NERDTreeDirArrowCollapsible = '|'
+" Exit vim if only NerdTree is left open:
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "------------------------------------------------------------------------------
 " Place language name here
 let neomake_blacklist = ['tex', 'rust', 'js', 'haskell']
@@ -273,9 +292,17 @@ autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
             \   q | endif
 
 " Use deoplete
-" let g:deoplete#enable_at_startup = 1
-" Install:
-" :> pip3 install --user pynvim
+" If already in pum (list) => as default, otherwise start deoplete completion
+inoremap <silent><expr> <C-n> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" XXX: To select a candidate: <C-y>
+call g:deoplete#custom#option({
+\ 'auto_complete': v:false,
+\ })
+let g:deoplete#enable_at_startup = 1
+" When disabled, only the text before the given position is considered part of
+" the word. When enabled (the default), the whole variable name that the cursor
+" is on will be included. Default: 1
+let g:deoplete#sources#ternjs#expand_word_forward = 0
 
 " IndentLine settings
 " let g:indentLine_setColors = 0
@@ -434,6 +461,11 @@ noremap L $
 noremap J 5j
 noremap K 5k
 
+
+" Replace buffer with current line. Takes 3 of these ops to perform a swap
+noremap gr pkdd
+
+
 " Paste with new line
 nmap gP O<Space><ESC>Plx
 nmap gp o<Space><ESC>Plx
@@ -448,13 +480,14 @@ nnoremap g<C-O> o<ESC>k
 
 
 " Spell checking
+" To correct using suggestions: z=
 " noremap <F6> :setlocal spell! spelllang=en_us<CR>
 noremap <F5> :setlocal spell! spelllang=en<CR>
 noremap <F6> :setlocal spell! spelllang=ru<CR>
 noremap <F7> :setlocal spell! spelllang=uk<CR>
 
 set number " display line numbers
-set encoding=utf-8
+set encoding=UTF-8
 
 " Display Tab and Eol chars
 set list
