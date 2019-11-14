@@ -1,8 +1,10 @@
 # Git
 alias gits='git status -u'
-alias gitp='git push'
-alias gita='git add -A'
+# alias gitp='git push'
+# alias gita='git add -A'
 alias gitc='git commit'
+alias gitl='git log --oneline --decorate --graph --all'
+alias gitco='git checkout'
 
 # Copying
 alias cp='rsync -avh'
@@ -71,6 +73,8 @@ alias c='clear'
 alias mkwifi='sudo create_ap wlp60s0 wlp60s0 Igorek password'
 alias cshut='umnt /mnt/Storage || umnt /mnt/Mutual || shutdown now'
 alias cboot='umnt /mnt/Storage || umnt /mnt/Mutual || reboot'
+alias ctle='sudo systemctl enable'
+alias ctls='sudo systemctl start'
 # Reload shell config on the fly
 alias src='source ~/.zshrc'
 alias run='./run.zsh'

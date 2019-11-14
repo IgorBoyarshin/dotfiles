@@ -65,3 +65,5 @@ rsync -ah ~/.newsboat/urls .newsboat/urls
 rsync -ah ~/.fehbg .fehbg
 
 rsync -ah ~/.load.zsh .load.zsh
+
+rsync -ah ~/.remedy_q.zsh .remedy_q.zsh

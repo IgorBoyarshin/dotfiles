@@ -48,6 +48,8 @@ urxvt*shading: 22
 ! Redefine some keybindings for resize-font
 URxvt.keysym.C-plus: resize-font:reset
 URxvt.keysym.C-equal: resize-font:bigger
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.resize-font.step: 1
 
 ! Disable default Ctrl+Shift keybinding
 URxvt.iso14755: false

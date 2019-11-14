@@ -103,6 +103,10 @@ call plug#end()
 " --------------------- Vim-Plug end -----------------------
 " ----------------------------------------------------------
 " --------------------- Plugins settings begin -------------
+" FZF
+nnoremap <C-g> :Rg<Cr>
+nnoremap <C-p> :Files<Cr>
+
 " Web
 autocmd FileType javascript noremap <silent> '' :ALELint<CR>
 " autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
@@ -467,8 +471,14 @@ noremap gr pkdd
 
 
 " Paste with new line
-nmap gP O<Space><ESC>Plx
-nmap gp o<Space><ESC>Plx
+" nmap gP O<Space><ESC>Plx
+" nmap gp o<Space><ESC>Plx
+nmap gP O<ESC>Vp
+nmap gp o<ESC>Vp
+" nmap gP O<C-r>*
+" nmap gp o<C-r>*
+
+
 
 " Visual block shift
 vnoremap < <gv
@@ -531,9 +541,9 @@ endif
 
 
 " set clipboard=unnamed ",unnamedplus
-" set clipboard^=unnamed,unnamedplus
+set clipboard=unnamed,unnamedplus
 " set clipboard=unnamedplus
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " To fix the delay when exiting Insert mode
 set timeoutlen=1000 ttimeoutlen=0
@@ -552,20 +562,21 @@ abbr inclued include
 abbr stirng string
 
 
-function! ClipboardYank()
-    call system('xclip -i -selection clipboard', @@)
-endfunction
+" function! ClipboardYank()
+"     call system('xclip -i -selection clipboard', @@)
+" endfunction
+"
+" function! ClipboardPaste()
+"     let @@ = system('xclip -o -selection clipboard')
+" endfunction
 
-function! ClipboardPaste()
-    let @@ = system('xclip -o -selection clipboard')
-endfunction
-
-vnoremap <silent> y y:call ClipboardYank()<cr>
-vnoremap <silent> d d:call ClipboardYank()<cr>
-nnoremap <silent> p :call ClipboardPaste()<cr>p
+" vnoremap <silent> y y:call ClipboardYank()<cr>
+" vnoremap <silent> d d:call ClipboardYank()<cr>
+" nnoremap <silent> p :call ClipboardPaste()<cr>p
 
 
-" Otherwise the cursor stops blinking putside of vim
+
+" Otherwise the cursor stops blinking outside of vim
 au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
 
