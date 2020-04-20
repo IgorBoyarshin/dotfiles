@@ -246,7 +246,7 @@ let g:NERDTreeDirArrowCollapsible = '|'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "------------------------------------------------------------------------------
 " Place language name here
-let neomake_blacklist = ['tex', 'rust', 'js', 'haskell']
+let neomake_blacklist = ['tex', 'rust', 'js', 'haskell', 'cpp', 'c']
 " Run Neomake on every read and write
 autocmd! BufReadPost,BufWritePost * if index(neomake_blacklist, &ft) < 0 | Neomake
 

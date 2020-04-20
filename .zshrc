@@ -9,8 +9,8 @@ alias gitco='git checkout'
 # Copying
 alias cp='rsync -avh'
 alias cppr='rsync -avh --progress'
-alias scp='sudo rsync -avh'
-alias scppr='sudo rsync -avh --progress'
+alias sucp='sudo rsync -avh'
+alias sucppr='sudo rsync -avh --progress'
 
 # Mounting
 # Regular

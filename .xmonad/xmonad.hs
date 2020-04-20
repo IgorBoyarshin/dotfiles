@@ -40,8 +40,8 @@ main = do
                 manageDocks,
                 className =? "TelegramDesktop" --> doF (W.shift (myWorkspaces !! 2)),
                 className =? "Google-chrome" --> doF (W.shift (myWorkspaces !! 1)),
-                className =? "Brave-browser" --> doF (W.shift (myWorkspaces !! 1)),
-                className =? "OpenGL Test" --> doFloat,
+                -- className =? "Brave-browser" --> doF (W.shift (myWorkspaces !! 1)),
+                -- className =? "OpenGL Test" --> doFloat,
                 isFullscreen --> doFullFloat,
                 manageHook desktopConfig
             ],
@@ -64,12 +64,12 @@ main = do
            ((shiftMask, xK_Print),
                 spawn "sleep 0.2; ~/.screenshot-capture.zsh"),
 
-           ((mod4Mask, xK_o),
-                runInTerm "" "htop"),
+           -- ((mod4Mask, xK_o),
+           --      runInTerm "" "htop"),
 
             -- Somewhy if you use xmonad via Stack, the usual Mod+q doesn't work,
             -- so do it like this.
-           ((mod4Mask, xK_q),
+           ((mod1Mask, xK_q),
                 restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
 
             -- Brightness

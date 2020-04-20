@@ -22,3 +22,4 @@ application/http=/usr/share/applications/brave-bin.desktop
 application/https=/usr/share/applications/brave-bin.desktop
 x-scheme-handler/postman=Postman.desktop
 application/wps-office.pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+x-scheme-handler/tg=kotatogramdesktop.desktop
