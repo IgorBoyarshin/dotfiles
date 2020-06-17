@@ -1,19 +1,20 @@
 #!/usr/bin/zsh
 
 # The line numbering should be synced with distribute.zsh to keep things easily maintainable
-# .zshrc .vimrc .tmux.conf are sourced from this dir, don't copy them!!
 # Also need to edit the crontab manually with crontab.txt
+# .Xresources is not used anymore! Collect, but don't distribute it
 
-
-
+rsync -ah ~/.tmux.conf ./
+rsync -ah ~/.zshrc ./
+rsync -ah ~/.vimrc ./
 
 rsync -ah ~/.dircolors ./
-rsync -ah ~/.screenshot-capture.zsh ./
-rsync -ah ~/.screenshot-delay-3.zsh ./
-rsync -ah ~/.screenshot.zsh ./
-rsync -ah ~/.set-volume.zsh ./
-rsync -ah ~/.set_brightness.zsh ./
-rsync -ah ~/.set_backlight.zsh ./
+# rsync -ah ~/.screenshot-capture.zsh ./
+# rsync -ah ~/.screenshot-delay-3.zsh ./
+# rsync -ah ~/.screenshot.zsh ./
+# rsync -ah ~/.set-volume.zsh ./
+# rsync -ah ~/.set_brightness.zsh ./
+# rsync -ah ~/.set_backlight.zsh ./
 rsync -ah ~/.xinitrc ./
 rsync -ah ~/.Xresources ./
 rsync -ah ~/.xserverrc ./
@@ -52,18 +53,10 @@ rsync -ah ~/.config/mpd/mpd.conf .config/mpd/
 mkdir -p .config/mpv
 rsync -ah ~/.config/mpv/input.conf .config/mpv/
 rsync -ah ~/.config/mpv/mpv.conf .config/mpv/
-mkdir -p .config/mpv/lua-settings
-rsync -ah ~/.config/mpv/lua-settings/osc.conf .config/mpv/lua-settings/
+mkdir -p .config/mpv/script-opts
+rsync -ah ~/.config/mpv/script-opts/osc.conf .config/mpv/script-opts/
 
 mkdir -p .config/zathura
 rsync -ah ~/.config/zathura/zathurarc .config/zathura/
 
-mkdir -p .newsboat
-rsync -ah ~/.newsboat/config .newsboat/config
-rsync -ah ~/.newsboat/urls .newsboat/urls
-
-rsync -ah ~/.fehbg .fehbg
-
-rsync -ah ~/.load.zsh .load.zsh
-
-rsync -ah ~/.remedy_q.zsh .remedy_q.zsh
+rsync -rah ~/scripts .

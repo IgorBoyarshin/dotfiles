@@ -7,14 +7,20 @@ get_volume() {
 
     colored_volume_status=0
     if [[ "$volume_muted" == "no" ]]; then
-        colored_volume_status="<fc=#22ee22>[on]</fc>"
+        colored_volume_status="[on]"
+        # colored_volume_status="<fc=#22ee22>[on]</fc>"
     elif [[ "$volume_muted" == "yes" ]]; then
-        colored_volume_status="<fc=#ee2222>[OFF]</fc>"
+        colored_volume_status="[OFF]"
+        # colored_volume_status="<fc=#ee2222>[OFF]</fc>"
     else
         colored_volume_status=0
     fi
 
     echo $volume_level% $colored_volume_status | tee /tmp/.volume-pipe
+    # Add 34 to the signal number
+    kill -44 $(pidof dwmblocks)
+    # sleep 1
+    # pkill -RTMIN+10 dwmblocks
 }
 
 

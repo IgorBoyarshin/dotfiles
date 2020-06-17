@@ -67,10 +67,16 @@ main = do
            -- ((mod4Mask, xK_o),
            --      runInTerm "" "htop"),
 
+            -- to prevent key glitching
+           ((mod4Mask, xK_q),
+                spawn ""),
+           ((mod4Mask .|. shiftMask, xK_q),
+                spawn ""),
+
             -- Somewhy if you use xmonad via Stack, the usual Mod+q doesn't work,
             -- so do it like this.
-           ((mod1Mask, xK_q),
-                restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
+           -- ((mod1Mask, xK_q),
+           --      restart "/home/igorek/.xmonad/xmonad-x86_64-linux" True),
 
             -- Brightness
            ((controlMask .|. mod1Mask, xK_equal),
