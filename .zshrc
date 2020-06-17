@@ -45,7 +45,7 @@ alias vim='nvim'
 alias svim='sudo -E nvim'
 alias djvu='djview'
 alias pdf='zathura'
-alias imgfull='nomacs'
+# alias imgfull='nomacs'
 alias img='rifle_sxiv'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
@@ -100,8 +100,9 @@ alias srcnvm='source /usr/share/nvm/init-nvm.sh'
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH=$PATH:/home/igorek/.cargo/bin
 
+# Let the terminal set it!!!
 # Otherwise zsh complains
-export TERM="rxvt-256color"
+# export TERM="rxvt-256color"
 
 # If ypu uncomment this, apps will create ~/~ and store their configs there
 # export XDG_CONFIG_HOME="~/.config"
