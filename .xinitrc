@@ -33,7 +33,7 @@
 #  unset f
 # fi
 
-~/.mon_large.zsh
+~/scripts/mon_large.zsh
 
 # To be able to use custom scripts for brightness
 sudo chmod a+w /sys/class/backlight/intel_backlight/brightness
