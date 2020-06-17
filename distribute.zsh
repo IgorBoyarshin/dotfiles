@@ -44,8 +44,8 @@ rsync -ah .config/ranger/scope.sh ~/.config/ranger/
 mkdir -p ~/.config/ranger/colorschemes
 rsync -ah .config/ranger/colorschemes/my_ranger_colorscheme.py ~/.config/ranger/colorschemes/my_ranger_colorscheme.py
 
-# mkdir -p ~/.config/nvim
-# rsync -ah .config/nvim/init.vim ~/.config/nvim/
+mkdir -p ~/.config/nvim
+rsync -ah .config/nvim/init.vim ~/.config/nvim/
 
 mkdir -p ~/.config/zathura
 rsync -ah .config/zathura/zathurarc ~/.config/zathura/

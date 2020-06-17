@@ -16,7 +16,7 @@ rsync -ah ~/.dircolors ./
 # rsync -ah ~/.set_brightness.zsh ./
 # rsync -ah ~/.set_backlight.zsh ./
 rsync -ah ~/.xinitrc ./
-rsync -ah ~/.Xresources ./
+# rsync -ah ~/.Xresources ./
 rsync -ah ~/.xserverrc ./
 rsync -ah ~/.zprofile ./
 
@@ -28,11 +28,11 @@ mkdir -p .ncmpcpp
 rsync -ah ~/.ncmpcpp/bindings ./.ncmpcpp/
 rsync -ah ~/.ncmpcpp/config ./.ncmpcpp/
 
-mkdir -p .xmonad
-rsync -ah ~/.xmonad/build.rm_ext .xmonad/
-rsync -ah ~/.xmonad/stack.yaml .xmonad/
-rsync -ah ~/.xmonad/.xmobarrc .xmonad/
-rsync -ah ~/.xmonad/xmonad.hs .xmonad/
+# mkdir -p .xmonad
+# rsync -ah ~/.xmonad/build.rm_ext .xmonad/
+# rsync -ah ~/.xmonad/stack.yaml .xmonad/
+# rsync -ah ~/.xmonad/.xmobarrc .xmonad/
+# rsync -ah ~/.xmonad/xmonad.hs .xmonad/
 
 mkdir -p .config
 rsync -ah ~/.config/mimeapps.list .config/
