@@ -78,7 +78,7 @@ Plug 'vim-scripts/ruscmd'
 " Syntax highlighting
 " Plug 'sheerun/vim-polyglot'
 " For fuzzy find (search)
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'dir': '~/Apps/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 " Autocompletion
 " Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}

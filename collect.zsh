@@ -49,6 +49,7 @@ rsync -ah ~/.config/nvim/init.vim .config/nvim/
 
 mkdir -p .config/mpd
 rsync -ah ~/.config/mpd/mpd.conf .config/mpd/
+rsync -rah ~/.config/mpd/playlists .config/mpd/
 
 mkdir -p .config/mpv
 rsync -ah ~/.config/mpv/input.conf .config/mpv/

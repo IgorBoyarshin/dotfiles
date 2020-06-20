@@ -52,6 +52,7 @@ rsync -ah .config/zathura/zathurarc ~/.config/zathura/
 
 mkdir -p ~/.config/mpd
 rsync -ah .config/mpd/mpd.conf ~/.config/mpd/
+rsync -rah .config/mpd/playlists ~/.config/mpd/
 
 mkdir -p ~/.config/mpv
 rsync -ah .config/mpv/input.conf ~/.config/mpv/

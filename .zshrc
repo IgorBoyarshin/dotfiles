@@ -46,7 +46,7 @@ alias svim='sudo -E nvim'
 alias djvu='djview'
 alias pdf='zathura'
 # alias imgfull='nomacs'
-alias img='rifle_sxiv'
+alias img='sxiv-rifle'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
@@ -71,7 +71,7 @@ alias info='vim ~/Stuff/Notes/info.txt'
 alias inst='vim ~/Stuff/Notes/packages.txt'
 alias vimrc='vim ~/.vimrc'
 alias zshrc='vim ~/.zshrc'
-alias lsr='ls -alrth'
+alias lsr='ls -alrthH'
 alias c='clear'
 alias mkwifi='sudo create_ap wlp60s0 wlp60s0 Igorek password'
 alias cshut='umnt /mnt/Storage || umnt /mnt/Mutual || shutdown now'
@@ -96,19 +96,16 @@ alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Not
 alias srcnvm='source /usr/share/nvm/init-nvm.sh'
 
 
-# Rust. Racer
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export PATH=$PATH:/home/igorek/.cargo/bin
-
 # Let the terminal set it!!!
 # Otherwise zsh complains
 # export TERM="rxvt-256color"
+# export TERM="st-256color"
 
 # If ypu uncomment this, apps will create ~/~ and store their configs there
 # export XDG_CONFIG_HOME="~/.config"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/igorek/.oh-my-zsh
+export ZSH=$HOME/Apps/.oh-my-zsh
 
 # For MPD
 export MPD_HOST=$HOME/.config/mpd/socket
@@ -124,6 +121,14 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export FONTCONFIG_PATH=/etc/fonts
 
 export EDITOR='vim'
+
+# Rust
+export CARGO_HOME=$HOME/Apps/cargo
+export RUSTUP_HOME=$HOME/Apps/rustup
+# export PATH="/home/igorek/Apps/cargo/bin:$PATH"
+# Racer
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export PATH=$PATH:/home/igorek/Apps/cargo/bin
 
 
 # Powerlevel9k settings (must go before the theme setting)
@@ -239,7 +244,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
