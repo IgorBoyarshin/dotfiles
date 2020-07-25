@@ -17,6 +17,7 @@ alias sucppr='sudo rsync -avh --progress'
 
 # Mounting
 # Regular
+alias sss='shutdown now'
 alias mnt='sudo mount -o uid=igorek,gid=users,fmask=111,dmask=000 /dev/sdb1 /mnt/External'
 alias umnt='sudo umount /dev/sdb1'
 #  && sudo chown igorek /mnt/External
@@ -51,7 +52,7 @@ alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
 alias rr='ranger'
-alias vv='ESCDELAY=25 vffm'
+alias vv='ESCDELAY=25 vffm; tput reset'
 alias wea='curl wttr.in/kiev'
 alias sdocker='sudo docker'
 alias redr='redshift -x'
@@ -127,8 +128,8 @@ export CARGO_HOME=$HOME/Apps/cargo
 export RUSTUP_HOME=$HOME/Apps/rustup
 # export PATH="/home/igorek/Apps/cargo/bin:$PATH"
 # Racer
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH=$PATH:/home/igorek/Apps/cargo/bin
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 
 # Powerlevel9k settings (must go before the theme setting)
