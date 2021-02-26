@@ -10,4 +10,5 @@ xrandr --nograb --noprimary --output "eDP-1-1" --off
 xrandr --nograb --output "HDMI-0" --off
 sleep 2
 
-xrandr --nograb --output "HDMI-0" --auto --primary
+# xrandr --nograb --output "HDMI-0" --auto w--primary
+xrandr --output "HDMI-0" --primary --mode 2560x1440 --rate 144.00

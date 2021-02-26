@@ -42,7 +42,7 @@ mpd &
 
 ~/scripts/audio/reload_audio_variables.zsh &
 
-# Remove screen turning off (energy savings after 10min)
+# Disable screen turning off (energy savings after 10min)
 xset dpms 0 0 0
 xset s off -dpms
 

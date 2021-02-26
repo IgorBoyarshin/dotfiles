@@ -129,7 +129,8 @@ export RUSTUP_HOME=$HOME/Apps/rustup
 # export PATH="/home/igorek/Apps/cargo/bin:$PATH"
 # Racer
 export PATH=$PATH:/home/igorek/Apps/cargo/bin
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 
 # Powerlevel9k settings (must go before the theme setting)
@@ -202,7 +203,7 @@ KEYTIMEOUT=1
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=60
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
