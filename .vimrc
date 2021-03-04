@@ -1,6 +1,9 @@
 " To load file:
 " source ~/dotfiles/.vimrc
 
+" Vimscript cheatsheet
+" https://devhints.io/vimscript
+
 " This is the configuration file for Vim(NeoVim)
 set rtp+=~/.local/share/nvim/site/autoload/plug.vim
 " =============================================================================
@@ -36,8 +39,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ruscmd'
 
 " GLSL syntax highlight
-" Plug 'tikhomirov/vim-glsl'
-" Plug 'beyondmarc/opengl.vim'
+Plug 'tikhomirov/vim-glsl'
+Plug 'beyondmarc/opengl.vim'
 
 " LSP
 " Plug 'autozimu/LanguageClient-neovim', {
@@ -157,6 +160,8 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " Enable autocompletion for bottom bar
 set wildmode=longest,list,full
+
+set mouse=a
 " -----------------------------------------------------------------------------
 " Relative line numbers
 " Switches back to absolute once the focus is lost or upon entering the Insert
@@ -270,7 +275,7 @@ abbr stirng string
 " =============================================================================
 " ==================== Plugin: FZF ============================================
 " =============================================================================
-nnoremap <C-g> :Ag<Cr>
+nnoremap <C-f> :Ag<Cr>
 nnoremap <C-p> :Files<Cr>
 " -----------------------------------------------------------------------------
 " Does not seem to have any effect:
@@ -377,7 +382,7 @@ autocmd FileType java inoremap sout<Tab> System.out.println();<Esc>F(a
 " ==================== Plugin: NerdTree =======================================
 " =============================================================================
 if 0
-    map <C-f> :NERDTreeToggle<CR>
+    map <C-d> :NERDTreeToggle<CR>
     map <C-h> <C-w><C-w>
     let g:NERDTreeDirArrowExpandable = '―'
     let g:NERDTreeDirArrowCollapsible = '|'
