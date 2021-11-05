@@ -23,7 +23,7 @@ fi
 # To be able to use custom scripts for brightness
 # sudo chmod a+w /sys/class/backlight/intel_backlight/brightness
 # INVESTIGATE: does not work through sudoers file
-~/scripts/enable_backlight_writing.zsh &
+# ~/scripts/enable_backlight_writing.zsh &
 
 ~/scripts/fehbg.sh &
 

@@ -28,10 +28,16 @@ Plug 'Yggdroot/indentLine'          " indentation with vertical markers
 Plug 'Raimondi/delimitMate'         " auto-close brackets, quotes...
 " Plug 'ctrlpvim/ctrlp.vim'           " fuzzy search
 Plug 'easymotion/vim-easymotion'
-Plug 'garbas/vim-snipmate' " This and the following two: for snippets
-" (Alternative: sirver/UltiSnips)
+
+" Snippets
+Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+
+" " Snippets
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+
 
 Plug 'tpope/vim-surround'
 
@@ -59,7 +65,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+" Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
 " Plug 'ncm2/ncm2'
 " Plug 'roxma/nvim-yarp'
@@ -177,11 +183,12 @@ endif
 " =============================================================================
 " ==================== Keys (shortcuts) =======================================
 " =============================================================================
-vnoremap <C-/> gc
-nnoremap <C-/> gcc
+" vnoremap <C-/> gc
+" nnoremap <C-/> gcc
 
 nmap gP O<ESC>Vp
 nmap gp o<ESC>Vp
+
 
 nnoremap gO O<ESC>j
 nnoremap g<C-O> o<ESC>k
@@ -189,7 +196,7 @@ nnoremap g<C-O> o<ESC>k
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap '' :w<CR>
+" nnoremap '' :w<CR>
 
 nnoremap <Space> i<Space><Esc>
 nnoremap <CR> a<Space><Esc>
@@ -315,6 +322,7 @@ let g:delimitMate_expand_cr = 1
 " let g:indentLine_setColors = 0
 let g:indentLine_char = '┆'
 let g:indentLine_color_term = 239
+let g:indentLine_fileTypeExclude = ['json']
 " =============================================================================
 " ==================== Web ====================================================
 " =============================================================================
@@ -336,9 +344,14 @@ let g:md_conceal  = ""
 " =============================================================================
 " ==================== Rust ===================================================
 " =============================================================================
-set hidden
-let g:racer_experimental_completer = 1
-
+" Main:
+" set hidden
+" let g:racer_experimental_completer = 1
+" set completeopt=menuone,noselect,noinsert
+" set shortmess+=c
+"
+" autocmd FileType rust inoremap <c-p> <c-x><c-o>
+" Other:
 " " let g:LanguageClient_autoStart = 1
 " nnoremap <leader>lspa :LanguageClientStart<CR>
 " nnoremap <leader>lspo :LanguageClientStop<CR>
@@ -350,10 +363,6 @@ let g:racer_experimental_completer = 1
 " autocmd FileType rust inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=menuone,noselect,noinsert
-set shortmess+=c
-
-autocmd FileType rust inoremap <c-p> <c-x><c-o>
 " =============================================================================
 " ==================== Haskell ================================================
 " =============================================================================

@@ -132,6 +132,8 @@ export PATH=$PATH:/home/igorek/Apps/cargo/bin
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 # export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
+# Cross-compilation. crosstool-ng
+export PATH=$PATH:/home/igorek/Stuff/dev/cross/bin/
 
 # Powerlevel9k settings (must go before the theme setting)
 POWERLEVEL9K_MODE='nerdfont-complete'
