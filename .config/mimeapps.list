@@ -18,11 +18,14 @@ application/http=/usr/share/applications/brave-bin.desktop
 application/https=/usr/share/applications/brave-bin.desktop
 x-scheme-handler/postman=Postman.desktop
 application/wps-office.pdf=org.pwmt.zathura-pdf-mupdf.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-3IJUW0.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
 x-scheme-handler/discord-402572971681644545=discord-402572971681644545.desktop
 image/png=sxiv-rifle.desktop;
 image/webp=sxiv-usercreated-1.desktop;
 image/jpeg=sxiv-rifle.desktop;
+inode/directory=nautilus.desktop
+application/x-ms-dos-executable=com.usebottles.bottles.desktop
 
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-3IJUW0.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-3IJUW0.desktop;org.telegram.desktop.desktop;
+application/x-ms-dos-executable=wine.desktop;com.usebottles.bottles.desktop;

@@ -48,6 +48,10 @@ Plug 'vim-scripts/ruscmd'
 Plug 'tikhomirov/vim-glsl'
 Plug 'beyondmarc/opengl.vim'
 
+" Git highlighting
+" Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
+
 " LSP
 " Plug 'autozimu/LanguageClient-neovim', {
 " \ 'branch': 'next',
@@ -72,6 +76,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 
 " Javascript & Web & Typescript
+Plug 'posva/vim-vue'
 " Plug 'gko/vim-coloresque', {'for': 'css'}
 " Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Plug 'leshill/vim-json', {'for': 'javascript'}
@@ -211,13 +216,28 @@ ino <right> <Nop>
 ino <up> <Nop>
 ino <left> <Nop>
 
+noremap <C-j> J
+noremap <C-k> kJ
+
 noremap H ^
 noremap L $
 noremap J 5j
 noremap K 5k
 
+" Paste without overriding the buffer
+" gv highlights whatever was previously selected
+vnoremap p pgvy
+
+" Disable F1 (help menu)
+nmap <F1> :echo<CR>
+imap <F1> <C-o>:echo<CR>
+
 " Remove whitespaces from the end of the lines
 nnoremap <C-s> :%s/\s*$//<CR><C-L>
+
+" TODO
+" Reload configuration .vimrc
+" noremap <C-m> :source ~/.vimrc<Cr>
 
 " Spell checking
 " To correct using suggestions: z=
@@ -230,6 +250,14 @@ if maparg('<C-L>', 'n') ==# ''
     nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 " -----------------------------------------------------------------------------
+" Highlight lines that have changed
+if 0
+    if !exists(":DiffOrig")
+        command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+              \ | wincmd p | diffthis
+    endif
+endif
+" -----------------------------------------------------------------------------
 " Fixed accidental unwanted unrecoverable deletion while in insert mode
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
@@ -239,20 +267,35 @@ inoremap <c-w> <c-g>u<c-w>
 " (Use :hi to view current colors)
 syntax enable
 " -----------------------------------------------------------------------------
-set t_8f=^[[38;2;%lu;%lu;%lum " set foreground color
-set t_8b=^[[48;2;%lu;%lu;%lum " set background color
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+" set t_8f=^[[38;2;%lu;%lu;%lum " set foreground color
+" set t_8b=^[[48;2;%lu;%lu;%lum " set background color
 colorscheme gruvbox8_hard
 " set t_Co=256                         " Enable 256 colors
-" set termguicolors                    " Enable GUI colors for the terminal to get truecolor
+set termguicolors                    " Enable GUI colors for the terminal to get truecolor
 " -----------------------------------------------------------------------------
 " For transparent background:
 " let g:solarized_termtrans=1
 " hi Normal guibg=NONE ctermbg=NONE
 " -----------------------------------------------------------------------------
 " Personal changes to colors
-highlight Comment ctermfg=241
-highlight Normal ctermbg=233
-highlight Todo cterm=bold ctermfg=203 ctermbg=233
+
+" GUI colors (truecolor)
+highlight Normal guibg=#101418
+highlight Comment guifg=#726354
+highlight Todo gui=bold guifg=#ff1974 guibg=#101418
+
+" TERM 256 colors
+" highlight Comment ctermfg=244
+" highlight Normal ctermbg=237
+" highlight Todo cterm=bold ctermfg=203 ctermbg=233
+" -----------------------------------------------------------------------------
+" Highlight just as TODO
+match Todo /\<NOTE\>/
+" match Todo /\<nocheckin\>/
 " -----------------------------------------------------------------------------
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -269,6 +312,20 @@ endif
 " Otherwise the cursor stops blinking outside of vim
 au VimLeave * set guicursor=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 " =============================================================================
+" ==================== Functions ==============================================
+" =============================================================================
+function! CppSwitchToOppositeFileType()
+    let ext = expand('%:e')
+
+    if ext == "h"
+        execute "e " . expand('%:r') . ".cpp"
+    elseif ext == "cpp"
+        execute "e " . expand('%:r') . ".h"
+    endif
+endfunction
+
+noremap <C-n> :call CppSwitchToOppositeFileType()<Cr>
+" =============================================================================
 " ==================== Typos/abbreviations ====================================
 " =============================================================================
 abbr cosnt const
@@ -280,10 +337,26 @@ abbr whiel while
 abbr inclued include
 abbr stirng string
 " =============================================================================
+" ==================== Plugin: vim-gitgutter ==================================
+" =============================================================================
+let g:gitgutter_enabled = 0
+" let g:gitgutter_set_sign_backgrounds = 1
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '##'
+let g:gitgutter_sign_removed = '=='
+
+" let g:gitgutter_highlight_lines = 1
+let g:gitgutter_highlight_linenrs = 1
+
+set updatetime=100
+
+noremap <C-h> :GitGutterToggle<Cr>
+" =============================================================================
 " ==================== Plugin: FZF ============================================
 " =============================================================================
 nnoremap <C-f> :Ag<Cr>
 nnoremap <C-p> :Files<Cr>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 " -----------------------------------------------------------------------------
 " Does not seem to have any effect:
 " let g:fzf_colors =
@@ -320,27 +393,48 @@ let g:delimitMate_expand_cr = 1
 " ==================== Plugin: indentline =====================================
 " =============================================================================
 " let g:indentLine_setColors = 0
-let g:indentLine_char = '┆'
+" let g:indentLine_char = '┆'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_color_term = 239
-let g:indentLine_fileTypeExclude = ['json']
+" let g:indentLine_fileTypeExclude = ['json']
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
+" =============================================================================
+" ==================== Plugin: snipmate =======================================
+" =============================================================================
+" TODO move to the new (1) parser
+let g:snipMate = { 'snippet_version' : 0 }
 " =============================================================================
 " ==================== Web ====================================================
 " =============================================================================
 " Don't conceal hidden characters:
 autocmd FileType json setlocal conceallevel=0
 
-" autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 " let g:indentLine_fileTypeExclude = ['json']
 
 " autocmd FileType javascript setlocal omnifunc=syntaxcomplete#Complete
 " =============================================================================
 " ==================== Latex ==================================================
 " =============================================================================
+" To compile: \ll
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ""
 let g:md_conceal  = ""
 " NOTE: if concealing does not work:
 " set conceallevel = 0
+" =============================================================================
+" ==================== Universal quickfix window height =======================
+" =============================================================================
+augroup quickfix_autocmds
+  autocmd!
+  autocmd BufReadPost quickfix call AdjustWindowHeight(2, 5)
+augroup END
+
+function! AdjustWindowHeight(minheight, maxheight)
+  execute max([a:minheight, min([line('$') + 1, a:maxheight])])
+        \ . 'wincmd _'
+endfunction
 " =============================================================================
 " ==================== Rust ===================================================
 " =============================================================================

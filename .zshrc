@@ -47,7 +47,7 @@ alias svim='sudo -E nvim'
 alias djvu='djview'
 alias pdf='zathura'
 # alias imgfull='nomacs'
-alias img='sxiv-rifle'
+alias img='sxiv'
 alias word='libreoffice --writer'
 alias excel='libreoffice --calc'
 alias draw='libreoffice --draw'
@@ -88,6 +88,23 @@ alias record='ffmpeg -f pulse -ac 2 -i alsa_output.pci-0000_00_1f.3.analog-stere
 alias record1366='ffmpeg -f pulse -ac 2 -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -filter_complex amix=inputs=1 -f x11grab -r 30 -s 1920x1080 -i :0.0+0,0 -vf scale=1366:768 -vcodec libx264 -preset veryfast -crf 18 -acodec libmp3lame -q:a 1'
 
 alias cpcpp='cp ~/Stuff/Notes/coding/cpp_run.zsh.example run.zsh; cp ~/Stuff/Notes/coding/Makefile.example Makefile'
+
+
+rainbow() {
+    awk 'BEGIN{\
+        s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;\
+        for (colnum = 0; colnum<77; colnum++) {\
+            r = 255-(colnum*255/76);\
+            g = (colnum*510/76);\
+            b = (colnum*255/76);\
+            if (g>255) g = 510-g;\
+            printf "\033[48;2;%d;%d;%dm", r,g,b;\
+            printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;\
+            printf "%s\033[0m", substr(s,colnum+1,1);\
+        }\
+        printf "\n";\
+    }'
+}
 
 
 # For NVM (Node, npm)
@@ -134,6 +151,10 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
 # Cross-compilation. crosstool-ng
 export PATH=$PATH:/home/igorek/Stuff/dev/cross/bin/
+
+# export LD_LIBRARY_PATH=/home/igorek/Stuff/tm
+# export VK_LAYER_PATH=/usr/share/vulkan/explicit_layer.d
+# source /mnt/Storage/VulkanSDK/1.2.198.1/setup-env.sh
 
 # Powerlevel9k settings (must go before the theme setting)
 POWERLEVEL9K_MODE='nerdfont-complete'
